@@ -1,0 +1,2 @@
+source /nix/var/nix/profiles/per-user/$USER/envs/default/bin/enter-env -s default
+title-loop &

@@ -1,0 +1,22 @@
+SyncState /home-persistent/shlevy/mail/mbsync/
+
+MaildirStore main-local
+Path /home-persistent/shlevy/mail/maildir/
+Inbox /home-persistent/shlevy/mail/maildir/INBOX
+
+IMAPAccount main
+Host mail.hover.com
+User shea@shealevy.com
+SSLType IMAPS
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/creds/password-store/shea@shealevy.com.gpg"
+
+IMAPStore main-remote
+Account main
+
+Channel main
+Master :main-remote:
+Slave :main-local:
+Patterns * INBOX
+Create Both
+Remove Both
+Expunge Both
