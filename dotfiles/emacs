@@ -1,0 +1,184 @@
+;; -*- mode: Emacs-Lisp; -*-
+(setq user-emacs-directory "/home-persistent/shlevy/xdg/config/emacs")
+(require 'package)
+(setq package-enable-at-startup nil)
+(package-initialize)
+(require 'org)
+(require 'flycheck)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-startup-indented t)
+(setq default-input-method "TeX")
+(autoload 'notmuch "notmuch" "notmuch mail" t)
+(setq notmuch-crypto-process-mime t)
+(setq notmuch-fcc-dirs "Archives")
+(setq message-kill-buffer-on-exit t)
+(require 'mml2015)
+(setq mml2015-encrypt-to-self t)
+(setq mml2015-sign-with-sender t)
+(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+(with-eval-after-load 'notmuch-show
+  (defun notmuch-show-delete-message-then-next-or-next-thread ()
+    (interactive)
+    (notmuch-show-tag '("+deleted"))
+    (unless (notmuch-show-next-open-message)
+      (notmuch-show-next-thread t)))
+  (define-key notmuch-show-mode-map "d" 'notmuch-show-delete-message-then-next-or-next-thread))
+(with-eval-after-load 'notmuch
+  (defun notmuch-search-delete-thread ()
+    (interactive)
+    (notmuch-search-tag '("+deleted"))
+    (notmuch-search-next-thread))
+  (define-key notmuch-search-mode-map "d" 'notmuch-search-delete-thread))
+(setq
+   backup-by-copying t
+   backup-directory-alist
+    '(("." . "/home-persistent/shlevy/xdg/cache/emacs/saves"))
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)
+
+(require 'modalka)
+(modalka-global-mode 1)
+(global-set-key (kbd "∇") #'modalka-mode)
+(modalka-define-kbd "a" "C-a")
+(modalka-define-kbd "e" "C-e")
+(modalka-define-kbd "x" "M-x")
+(modalka-define-kbd "g" "C-g")
+(modalka-define-kbd "f" "C-x C-f")
+(modalka-define-kbd "S" "C-x C-s")
+(modalka-define-kbd "s" "C-s")
+(modalka-define-kbd "r" "C-r")
+(modalka-define-kbd "SPC" "C-SPC")
+(modalka-define-kbd "0" "C-x 0")
+(modalka-define-kbd "1" "C-x 1")
+(modalka-define-kbd "2" "C-x 2")
+(modalka-define-kbd "k" "C-k")
+(modalka-define-kbd "y" "C-y")
+(modalka-define-kbd "b" "C-x b")
+(modalka-define-kbd "/" "C-/")
+(modalka-define-kbd "K" "C-x k")
+(modalka-define-kbd "o" "C-x o")
+(modalka-define-kbd "!" "M-!")
+(modalka-define-kbd ":" "M-:")
+(modalka-define-kbd "<" "M-<")
+(modalka-define-kbd ">" "M->")
+(modalka-define-kbd "w" "C-w")
+(setq-default cursor-type '(bar . 1))
+(setq modalka-cursor-type 'box)
+(with-eval-after-load "znc"
+  (let ((cmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/creds/password-store/znc.gpg"))
+    (setq znc-servers
+	  `(("linode.shealevy.com" 5000 t
+	    ((freenode "shlevy" ,(shell-command-to-string cmd))))))))
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+(require 'org-drill)
+(require 'ledger-mode)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(browse-url-browser-function (quote browse-url-chromium))
+ '(browse-url-chromium-program "google-chrome-stable")
+ '(coq-compile-before-require t)
+ '(mail-envelope-from 'header)
+ '(mail-specify-envelope-from t)
+ '(message-sendmail-envelope-from 'header)
+ '(mml-secure-key-preferences
+   (quote
+    ((OpenPGP
+      (sign)
+      (encrypt
+       ("shea@shealevy.com" "37DC4CAB574ED7A7679ACC0BF483E15E39118520")))
+     (CMS
+      (sign)
+      (encrypt)))))
+ '(notmuch-saved-searches
+   (quote
+    ((:name "inbox" :query "tag:inbox" :key "i")
+     (:name "unread" :query "tag:unread" :key "u")
+     (:name "flagged" :query "tag:flagged" :key "f")
+     (:name "sent" :query "tag:sent" :key "t")
+     (:name "drafts" :query "tag:draft" :key "d")
+     (:name "all mail" :query "*" :key "a")
+     (:name "spam" :query "is:spam"))))
+ '(org-agenda-files
+   (quote
+    ("~/documents/unh/2017/spring/nsb-502/notes/2017-01-25.org" "~/documents/unh/2017/spring/nsb-705/theme-I/notes/2017-01-26.org" "~/documents/todo.org")))
+ '(org-agenda-todo-ignore-with-date t)
+ '(org-enforce-todo-dependencies t)
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m org-depend)))
+ '(org-startup-with-inline-images t)
+ '(proof-splash-enable nil)
+ '(safe-local-variable-values
+   (quote
+    ((eval when
+	   (and
+	    (buffer-file-name)
+	    (file-regular-p
+	     (buffer-file-name))
+	    (string-match-p "^[^.]"
+			    (buffer-file-name)))
+	   (unless
+	       (featurep
+		(quote package-build))
+	     (let
+		 ((load-path
+		   (cons "../package-build" load-path)))
+	       (require
+		(quote package-build))))
+	   (package-build-minor-mode)
+	   (set
+	    (make-local-variable
+	     (quote package-build-working-dir))
+	    (expand-file-name "../working/"))
+	   (set
+	    (make-local-variable
+	     (quote package-build-archive-dir))
+	    (expand-file-name "../packages/"))
+	   (set
+	    (make-local-variable
+	     (quote package-build-recipes-dir))
+	    default-directory))
+     (eval c-set-offset
+	   (quote access-label)
+	   (quote -))
+     (eval c-set-offset
+	   (quote substatement-open)
+	   0)
+     (eval c-set-offset
+	   (quote arglist-cont-nonempty)
+	   (quote +))
+     (eval c-set-offset
+	   (quote arglist-cont)
+	   0)
+     (eval c-set-offset
+	   (quote arglist-intro)
+	   (quote +))
+     (eval c-set-offset
+	   (quote inline-open)
+	   0)
+     (eval c-set-offset
+	   (quote defun-open)
+	   0)
+     (eval c-set-offset
+	   (quote innamespace)
+	   0)
+     (indicate-empty-lines . t))))
+ '(send-mail-function (quote sendmail-send-it))
+ '(send-mail-program "msmtp")
+ '(sendmail-program "msmtp"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;org-drill

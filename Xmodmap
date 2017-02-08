@@ -1,0 +1,3 @@
+! Caps lock -> nabla, hacky to use as a modifier
+remove Lock = Caps_Lock
+keycode 66 = nabla

@@ -1,0 +1,5 @@
+# -*- mode: sh; -*-
+. $ACTIVE_NIX_ENV/etc/profile.d/bash_completion.sh
+for i in "$ACTIVE_NIX_ENV/etc/bash_completion.d"/*; do
+  . "$i"
+done

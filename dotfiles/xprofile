@@ -1,2 +1,5 @@
 source /nix/var/nix/profiles/per-user/$USER/envs/default/bin/enter-env -s default
 title-loop &
+xrdb -merge /home-persistent/shlevy/config/Xresources
+xmodmap /home-persistent/shlevy/config/Xmodmap
+xbindkeys
