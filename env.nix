@@ -31,7 +31,7 @@ let pkgs = import <nixpkgs>
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc coq_8_6
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys;
+                       xbindkeys zoom-us;
         inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.xorg) xmodmap xbacklight;
         inherit (pkgs.texlive) scheme-full;
@@ -44,7 +44,7 @@ let pkgs = import <nixpkgs>
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
-        NIX_PATH = "/home/shlevy/src";
+        # NIX_PATH = "/home/shlevy/src";
       };
     envs.default = pkgs.callPackage ./user-env.nix {}
       { paths = default-pkgs; env = default-env; };
