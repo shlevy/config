@@ -1,0 +1,13 @@
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "us_basic_nabla" {
+  include "us(basic)"
+  name[Group1] = "English (US) with caps->nabla";
+  replace key <CAPS> { [ U2207, ISO_Next_Group ] };
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "il_basic_nabla" {
+  include "il(basic)"
+  name[Group1] = "Hebrew with caps->nabla";
+  replace key <CAPS> { [ U2207, ISO_Next_Group ] };
+};

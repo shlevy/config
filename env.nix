@@ -19,7 +19,7 @@ let pkgs = import <nixpkgs>
     st = pkgs.st.override { patches = [ ./st.patch ]; };
     dwm = pkgs.dwm.override { patches = [ ./dwm.patch ]; };
     emacs = pkgs.emacsWithPackages (builtins.attrValues
-      { inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
+      { inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
           org-plus-contrib nix-buffer haskell-mode znc;
@@ -31,9 +31,9 @@ let pkgs = import <nixpkgs>
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc coq_8_6
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys zoom-us;
-        inherit (pkgs.emacsPackages) notmuch;
-        inherit (pkgs.xorg) xmodmap xbacklight;
+                       xbindkeys;
+        inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
+        inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive) scheme-full;
         inherit setup-home st emacs ghc;
       });
@@ -44,6 +44,7 @@ let pkgs = import <nixpkgs>
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
+        EMACSLOADPATH= "/run/current-system/sw/share/emacs/site-lisp:";
         # NIX_PATH = "/home/shlevy/src";
       };
     envs.default = pkgs.callPackage ./user-env.nix {}

@@ -74,8 +74,12 @@
 	  `(("linode.shealevy.com" 5000 t
 	    ((freenode "shlevy" ,(shell-command-to-string cmd))))))))
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
-(require 'org-drill)
+;(require 'org-drill)
 (require 'ledger-mode)
+
+(load (concat (getenv "ACTIVE_NIX_ENV") "/share/emacs/site-lisp/site-start.d/pg-init.el"))
+
+(require 'nix-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
