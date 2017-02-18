@@ -26,16 +26,18 @@ let pkgs = import <nixpkgs>
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix ]);
+    coq = pkgs.coq_8_6;
     default-pkgs = builtins.attrValues (desktop-tools //
       { inherit (pkgs) dmenu google-chrome gnupg isync unzip pass
                        gitFull libreoffice mosh manpages posix_man_pages
-                       src rcs ledger3 xclip scrot file vlc coq_8_6
+                       src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys;
+                       xbindkeys gcc;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
-        inherit (pkgs.texlive) scheme-full;
-        inherit setup-home st emacs ghc;
+        inherit (pkgs.texlive.combined) scheme-full;
+        inherit (coq) ocaml camlp5;
+        inherit setup-home st emacs ghc coq;
       });
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
