@@ -3,6 +3,7 @@ xkb_symbols "us_basic_nabla" {
   include "us(basic)"
   name[Group1] = "English (US) with caps->nabla";
   key <CAPS> { [ U2207, ISO_Next_Group ] };
+  modifier_map Mod1 { Super_L };
 };
 
 partial alphanumeric_keys modifier_keys
@@ -14,4 +15,5 @@ xkb_symbols "il_basic_nabla" {
     type[Group1]="ONE_LEVEL",
     symbols[Group1] = [ ISO_Level3_Shift ]
   };
+  modifier_map Mod1 { Super_L };
 };
