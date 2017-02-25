@@ -27,17 +27,21 @@ let pkgs = import <nixpkgs>
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix ]);
     coq = pkgs.coq_8_6;
+    linux-config-env = pkgs.buildFHSUserEnv
+      {  name = "linux-config";
+         targetPkgs = p: [ p.gcc p.gnumake p.ncurses p.ncurses.dev p.bashCompletion ];
+      };
     default-pkgs = builtins.attrValues (desktop-tools //
       { inherit (pkgs) dmenu google-chrome gnupg isync unzip pass
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys gcc;
+                       xbindkeys gcc python2 mercurial zoom-us autoconf automake;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
-        inherit setup-home st emacs ghc coq;
+        inherit setup-home st emacs ghc coq linux-config-env;
       });
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
