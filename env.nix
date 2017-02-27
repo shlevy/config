@@ -29,14 +29,15 @@ let pkgs = import <nixpkgs>
     coq = pkgs.coq_8_6;
     linux-config-env = pkgs.buildFHSUserEnv
       {  name = "linux-config";
-         targetPkgs = p: [ p.gcc p.gnumake p.ncurses p.ncurses.dev p.bashCompletion ];
+         targetPkgs = p: [ p.gcc p.gnumake p.ncurses p.ncurses.dev p.bashCompletion p.qt5.full p.pkgconfig p.perl p.kmod ];
       };
     default-pkgs = builtins.attrValues (desktop-tools //
       { inherit (pkgs) dmenu google-chrome gnupg isync unzip pass
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys gcc python2 mercurial zoom-us autoconf automake;
+                       xbindkeys gcc python2 mercurial zoom-us autoconf automake
+                       zip;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
