@@ -5,6 +5,8 @@
 (package-initialize)
 (require 'org)
 (require 'flycheck)
+(global-flycheck-mode)
+
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
@@ -80,6 +82,22 @@
 (load (concat (getenv "ACTIVE_NIX_ENV") "/share/emacs/site-lisp/site-start.d/pg-init.el"))
 
 (require 'nix-mode)
+
+(defun nix-buffer-hook (&rest rest)
+  (when (not (file-remote-p (buffer-file-name)))
+    (nix-buffer)))
+(advice-add #'normal-mode :before #'nix-buffer-hook)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(require 'company-ghci)
+(push 'company-ghci company-backends)
+(add-hook 'haskell-mode-hook 'company-mode)
+(add-hook 'haskell-interactive-mode-hook 'company-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

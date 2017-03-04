@@ -12,6 +12,7 @@ let pkgs = import <nixpkgs>
             creds = "/home-persistent/shlevy/creds";
             config = "/home-persistent/shlevy/config";
             documents = "/home-persistent/shlevy/documents";
+            "dir-locals.nix" = ./dir-locals.nix;
             ".xsession" = "${dwm}/bin/dwm";
             ".ssh" = "/home-persistent/shlevy/creds/ssh";
           };
@@ -22,7 +23,8 @@ let pkgs = import <nixpkgs>
       { inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
-          org-plus-contrib nix-buffer haskell-mode znc;
+          org-plus-contrib nix-buffer haskell-mode znc company-ghci
+          flycheck-haskell;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix ]);
@@ -37,7 +39,7 @@ let pkgs = import <nixpkgs>
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
                        xbindkeys gcc python2 mercurial zoom-us autoconf automake
-                       zip;
+                       zip openssl;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
@@ -52,7 +54,7 @@ let pkgs = import <nixpkgs>
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
         EMACSLOADPATH= "/run/current-system/sw/share/emacs/site-lisp:";
-        # NIX_PATH = "/home/shlevy/src";
+        NIX_PATH = "/home/shlevy/src";
       };
     envs.default = pkgs.callPackage ./user-env.nix {}
       { paths = default-pkgs; env = default-env; };
