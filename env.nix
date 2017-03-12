@@ -33,19 +33,19 @@ let pkgs = import <nixpkgs>
       {  name = "linux-config";
          targetPkgs = p: [ p.gcc p.gnumake p.ncurses p.ncurses.dev p.bashCompletion p.qt5.full p.pkgconfig p.perl p.kmod ];
       };
-    default-pkgs = builtins.attrValues (desktop-tools //
+    default-pkgs = (builtins.attrValues (desktop-tools //
       { inherit (pkgs) dmenu google-chrome gnupg isync unzip pass
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys gcc python2 mercurial zoom-us autoconf automake
-                       zip openssl;
+                       xbindkeys clang python2 mercurial zoom-us autoconf automake
+                       zip openssl cmake pkgconfig libtool;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
         inherit setup-home st emacs ghc coq linux-config-env;
-      });
+      })) ++ [ pkgs.nix.dev ] ++ pkgs.nix.dev.propagatedNativeBuildInputs;
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
         XDG_CONFIG_HOME = "/home-persistent/shlevy/xdg/config";
@@ -54,7 +54,7 @@ let pkgs = import <nixpkgs>
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
         EMACSLOADPATH= "/run/current-system/sw/share/emacs/site-lisp:";
-        NIX_PATH = "/home/shlevy/src";
+        #NIX_PATH = "/home/shlevy/src";
       };
     envs.default = pkgs.callPackage ./user-env.nix {}
       { paths = default-pkgs; env = default-env; };
