@@ -24,7 +24,7 @@ let pkgs = import <nixpkgs>
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
           org-plus-contrib nix-buffer haskell-mode znc company-ghci
-          flycheck-haskell;
+          flycheck-haskell helm;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix ]);
@@ -39,7 +39,7 @@ let pkgs = import <nixpkgs>
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
                        xbindkeys clang python2 mercurial zoom-us autoconf automake
-                       zip openssl cmake pkgconfig libtool;
+                       zip openssl cmake pkgconfig libtool lightdm;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;

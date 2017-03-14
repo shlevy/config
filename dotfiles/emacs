@@ -49,7 +49,8 @@
 (modalka-define-kbd "e" "C-e")
 (modalka-define-kbd "x" "M-x")
 (modalka-define-kbd "g" "C-g")
-(modalka-define-kbd "f" "C-x C-f")
+(modalka-define-kbd "f" "C-x c C-x C-f")
+(modalka-define-kbd "j" "C-j")
 (modalka-define-kbd "S" "C-x C-s")
 (modalka-define-kbd "s" "C-s")
 (modalka-define-kbd "r" "C-r")
@@ -98,6 +99,8 @@
 (push 'company-ghci company-backends)
 
 (add-hook 'after-init-hook 'global-company-mode)
+
+(require 'helm-config)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
