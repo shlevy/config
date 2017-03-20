@@ -39,7 +39,8 @@ let pkgs = import <nixpkgs>
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
                        xbindkeys clang python2 mercurial zoom-us autoconf automake
-                       zip openssl cmake pkgconfig libtool lightdm;
+                       zip openssl cmake pkgconfig libtool lightdm terraform_0_8_5 terragrunt_0_9_8
+		       awscli ansible;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
