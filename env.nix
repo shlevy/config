@@ -55,6 +55,7 @@ let pkgs = import <nixpkgs>
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
         EMACSLOADPATH= "/run/current-system/sw/share/emacs/site-lisp:";
+        AWS_CONFIG_FILE = "/home-persistent/shlevy/creds/aws/config";
         #NIX_PATH = "/home/shlevy/src";
       };
     envs.default = pkgs.callPackage ./user-env.nix {}
