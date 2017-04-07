@@ -84,10 +84,7 @@
 
 (require 'nix-mode)
 
-(defun nix-buffer-hook (&rest rest)
-  (when (not (file-remote-p (buffer-file-name)))
-    (nix-buffer)))
-(advice-add #'normal-mode :before #'nix-buffer-hook)
+(add-hook 'find-file-hook 'nix-buffer)
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
