@@ -17,7 +17,6 @@ let pkgs = import <nixpkgs>
             ".ssh" = "/home-persistent/shlevy/creds/ssh";
           };
       };
-    st = pkgs.st.override { patches = [ ./st.patch ]; };
     dwm = pkgs.dwm.override { patches = [ ./dwm.patch ]; };
     emacs = pkgs.emacsWithPackages (builtins.attrValues
       { inherit (pkgs.emacsPackages) notmuch;
@@ -45,7 +44,7 @@ let pkgs = import <nixpkgs>
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
-        inherit setup-home st emacs ghc coq linux-config-env;
+        inherit setup-home emacs ghc coq linux-config-env;
       })) ++ [ pkgs.nix.dev ] ++ pkgs.nix.dev.propagatedNativeBuildInputs;
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
