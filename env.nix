@@ -15,6 +15,7 @@ let pkgs = import <nixpkgs>
             "dir-locals.nix" = ./dir-locals.nix;
             ".xsession" = "${dwm}/bin/dwm";
             ".ssh" = "/home-persistent/shlevy/creds/ssh";
+            ".aws/credentials" = "/home-persistent/shlevy/creds/aws/credentials";
           };
       };
     dwm = pkgs.dwm.override { patches = [ ./dwm.patch ]; };
