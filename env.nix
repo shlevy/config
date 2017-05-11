@@ -24,7 +24,7 @@ let pkgs = import <nixpkgs>
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
           org-plus-contrib nix-buffer haskell-mode znc company-ghci
-          flycheck-haskell helm;
+          flycheck-haskell helm idris-mode;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix ]);
@@ -45,6 +45,7 @@ let pkgs = import <nixpkgs>
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
+        inherit (pkgs.haskellPackages) idris;
         inherit setup-home emacs ghc coq linux-config-env;
       })) ++ [ pkgs.nix.dev ] ++ pkgs.nix.dev.propagatedNativeBuildInputs;
     default-env =

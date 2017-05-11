@@ -1,6 +1,6 @@
 source /nix/var/nix/profiles/per-user/$USER/envs/default/bin/enter-env -s default
 title-loop &
-handle-lid &
+#handle-lid &
 xrdb -merge /home-persistent/shlevy/config/Xresources
 setxkbmap -symbols "pc+custom(us_basic_nabla)+custom(il_basic_nabla):2+inet(evdev)+terminate(ctrl_alt_bksp)" -print | \
   xkbcomp -I/home-persistent/shlevy/config/xkb - $DISPLAY
