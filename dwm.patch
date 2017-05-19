@@ -21,7 +21,7 @@ diff -Naur dwm-6.1-orig/config.def.h dwm-6.1/config.def.h
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 -static const char *termcmd[]  = { "st", NULL };
-+static const char *termcmd[]  = { "xterm", "-bg", "black", "-fg", "white", "-fa", "Liberation Mono:pixelsize=32:antialias=true:autohint=true",  NULL };
++static const char *termcmd[]  = { "xterm", "-bg", "black", "-fg", "white",  NULL };
 +static const char *chromiumcmd[] = { "google-chrome-stable", NULL };
 +static const char *emacscmd[] = { "emacsclient", "--alternate-editor=", "--create-frame", NULL };
  

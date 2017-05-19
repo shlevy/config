@@ -1,1 +1,3 @@
-#Xft.dpi: 192
+Xft.dpi: 192
+XTerm.vt100.faceName: Liberation Mono:pixelsize=32:antialias=true:autohint=true
+!XTerm.vt100.faceName: Liberation Mono:antialias=true:autohint=true
