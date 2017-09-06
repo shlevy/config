@@ -72,7 +72,7 @@
 (setq-default cursor-type '(bar . 1))
 (setq modalka-cursor-type 'box)
 (with-eval-after-load "znc"
-  (let ((cmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/creds/password-store/znc.gpg"))
+  (let ((cmd "gpg -q --for-your-eyes-only --no-tty -d ~/creds/password-store/znc.gpg"))
     (setq znc-servers
 	  `(("linode.shealevy.com" 5000 t
 	    ((freenode "shlevy" ,(shell-command-to-string cmd))))))))
@@ -132,7 +132,7 @@
      (:name "spam" :query "is:spam"))))
  '(org-agenda-files
    (quote
-    ("~/documents/unh/2017/spring/nsb-502/notes/2017-01-25.org" "~/documents/unh/2017/spring/nsb-705/theme-I/notes/2017-01-26.org" "~/documents/todo.org")))
+    ("~/documents/freecoast/praxeum-server.org" "~/documents/financial/tasks.org" "~/documents/takt/tasks.org" "~/documents/seacoast-home-learners/tasks.org" "~/documents/research.org" "~/documents/colton.org" "~/documents/chores.org" "~/documents/organization.org")))
  '(org-agenda-todo-ignore-with-date t)
  '(org-enforce-todo-dependencies t)
  '(org-modules

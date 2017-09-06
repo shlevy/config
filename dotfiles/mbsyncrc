@@ -8,7 +8,7 @@ IMAPAccount main
 Host mail.hover.com
 User shea@shealevy.com
 SSLType IMAPS
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/creds/password-store/shea@shealevy.com.gpg"
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/creds/password-store/shea@shealevy.com.gpg"
 
 IMAPStore main-remote
 Account main

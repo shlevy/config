@@ -94,4 +94,4 @@ synchronize_flags=true
 #		binary name or full path to invoke gpg.
 #
 [crypto]
-gpg_path=gpg2
+gpg_path=gpg

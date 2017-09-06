@@ -2,9 +2,9 @@
     XF86MonBrightnessUp
 "xbacklight -dec 5"
     XF86MonBrightnessDown
-"amixer set Master playback 1-"
+"pamixer --decrease 5"
     XF86AudioLowerVolume
-"amixer set Master playback 1+"
+"pamixer --increase 5"
     XF86AudioRaiseVolume
-"amixer set Master toggle"
+"pamixer --toggle-mute"
     XF86AudioMute

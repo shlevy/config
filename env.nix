@@ -33,20 +33,35 @@ let pkgs = import <nixpkgs>
       {  name = "linux-config";
          targetPkgs = p: [ p.gcc p.gnumake p.ncurses p.ncurses.dev p.bashCompletion p.qt5.full p.pkgconfig p.perl p.kmod ];
       };
+    openmpi-no-otfinfo = pkgs.runCommand pkgs.openmpi.name {} ''
+      mkdir $out
+      for file in ${pkgs.openmpi}/*; do # */
+        if [ $(basename $file) != "bin" ]; then
+          ln -sv $file $out
+        fi
+      done
+      mkdir $out/bin
+      for file in ${pkgs.openmpi}/bin/*; do # */
+        ln -sv $file $out/bin
+      done
+      unlink $out/bin/otfinfo
+    '';
     default-pkgs = (builtins.attrValues (desktop-tools //
       { inherit (pkgs) dmenu google-chrome gnupg isync unzip pass
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
-                       xbindkeys clang python2 mercurial autoconf automake
+                       xbindkeys python2 mercurial autoconf automake
                        zip openssl cmake pkgconfig libtool lightdm terraform_0_8_5 terragrunt_0_9_8
-		       awscli ansible docker nixops sqlite jq nix boehmgc;
+                       awscli ansible docker nixops sqlite jq nix boehmgc docbook_xsl kindlegen libxslt
+                       libxml2 pavucontrol pamixer zoom-us /*neuron-full*/ gcc ncurses patchelf kubernetes kops
+		       discord;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
-        inherit (pkgs.xorg) xmodmap xbacklight xkbcomp;
+        inherit (pkgs.xorg) xmodmap xbacklight xkbcomp libX11;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
         inherit (pkgs.haskellPackages) idris;
-        inherit setup-home emacs ghc coq linux-config-env;
+        inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo;
       })) ++ [ pkgs.nix.dev ] ++ pkgs.nix.dev.propagatedNativeBuildInputs;
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
