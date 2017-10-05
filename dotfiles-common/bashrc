@@ -1,4 +1,7 @@
 # -*- mode: sh; -*-
+if [ -z "$ACTIVE_NIX_ENV" ]; then
+  source /nix/var/nix/profiles/per-user/$USER/envs/default/bin/enter-env -s default
+fi
 . $ACTIVE_NIX_ENV/etc/profile.d/bash_completion.sh
 restore=$(shopt -p nullglob)
 shopt -s nullglob

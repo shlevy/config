@@ -1,0 +1,62 @@
+;; -*- mode: Emacs-Lisp; -*-
+(require 'package)
+(setq package-enable-at-startup nil)
+(package-initialize)
+(require 'org)
+(require 'flycheck)
+(global-flycheck-mode)
+
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-startup-indented t)
+(setq default-input-method "TeX")
+
+(require 'modalka)
+(modalka-global-mode 1)
+(global-set-key (kbd "∇") #'modalka-mode)
+(modalka-define-kbd "a" "C-a")
+(modalka-define-kbd "e" "C-e")
+(modalka-define-kbd "x" "M-x")
+(modalka-define-kbd "g" "C-g")
+(modalka-define-kbd "f" "C-x c C-x C-f")
+(modalka-define-kbd "j" "C-j")
+(modalka-define-kbd "S" "C-x C-s")
+(modalka-define-kbd "s" "C-s")
+(modalka-define-kbd "r" "C-r")
+(modalka-define-kbd "SPC" "C-SPC")
+(modalka-define-kbd "0" "C-x 0")
+(modalka-define-kbd "1" "C-x 1")
+(modalka-define-kbd "2" "C-x 2")
+(modalka-define-kbd "k" "C-k")
+(modalka-define-kbd "y" "C-y")
+(modalka-define-kbd "b" "C-x b")
+(modalka-define-kbd "/" "C-/")
+(modalka-define-kbd "K" "C-x k")
+(modalka-define-kbd "o" "C-x o")
+(modalka-define-kbd "!" "M-!")
+(modalka-define-kbd ":" "M-:")
+(modalka-define-kbd "<" "M-<")
+(modalka-define-kbd ">" "M->")
+(modalka-define-kbd "w" "C-w")
+(setq-default cursor-type '(bar . 1))
+(setq modalka-cursor-type 'box)
+
+(require 'nix-mode)
+
+(add-hook 'find-file-hook 'nix-buffer)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(require 'company-ghci)
+(push 'company-ghci company-backends)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(require 'helm-config)
+
+(global-set-key (kbd "S-SPC") #'company-complete)

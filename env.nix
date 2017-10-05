@@ -1,9 +1,9 @@
 let pkgs = import <nixpkgs>
-  { config =
-      { allowUnfree = true;
-        emacsSupport = true;
+      { config =
+          { allowUnfree = true;
+            emacsSupport = true;
+          };
       };
-  };
     desktop-tools = import ../src/shlevy-desktop-tools pkgs;
     setup-home = pkgs.callPackage ./setup-home.nix {}
       { dotfiles = ./dotfiles;

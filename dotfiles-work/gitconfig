@@ -1,0 +1,5 @@
+[user]
+    name = Shea Levy
+    email = shea.levy@target.com
+[merge]
+    conflictstyle = diff3

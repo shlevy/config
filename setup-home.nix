@@ -1,12 +1,14 @@
-{ runCommand, writeScriptBin, bash }: { dotfiles, other-files ? {} }:
-  let dotfile-names = builtins.attrNames (builtins.readDir dotfiles);
-      to-dotfile-spec = base:
-        { name = ".${base}";
-          value = dotfiles + "/${base}";
-        };
-      dotfile-specs =
-        builtins.listToAttrs (map to-dotfile-spec dotfile-names);
-      all-files = dotfile-specs // other-files;
+{ runCommand, writeScriptBin, bash, coreutils }: { dotfiles, other-files ? {} }:
+  let make-dotfile-specs = dotfiles:
+        let dotfile-names = builtins.attrNames (builtins.readDir dotfiles);
+            to-dotfile-spec = base:
+              { name = ".${base}";
+                value = dotfiles + "/${base}";
+              };
+        in builtins.listToAttrs (map to-dotfile-spec dotfile-names);
+      dotfile-specs = make-dotfile-specs dotfiles;
+      dotfile-common-specs = make-dotfile-specs ./dotfiles-common;
+      all-files = dotfile-common-specs // dotfile-specs // other-files;
       all-file-names = builtins.attrNames all-files;
       static = runCommand "home-static" {} ''
         mkdir $out
@@ -17,6 +19,8 @@
       '';
   in writeScriptBin "setup-home" ''
     #!${bash}/bin/bash
+    export PATH=${coreutils}/bin:$PATH
+    mkdir -p $XDG_RUNTIME_DIR
     run=$XDG_RUNTIME_DIR/setup-home
     mkdir -p $run
     ln -sfT ${static} $run/home-static
