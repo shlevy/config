@@ -1,4 +1,5 @@
 ;; -*- mode: Emacs-Lisp; -*-
+(server-start)
 (require 'package)
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -14,7 +15,7 @@
 
 (require 'modalka)
 (modalka-global-mode 1)
-(global-set-key (kbd "∇") #'modalka-mode)
+(global-set-key (kbd "§") #'modalka-mode)
 (modalka-define-kbd "a" "C-a")
 (modalka-define-kbd "e" "C-e")
 (modalka-define-kbd "x" "M-x")
