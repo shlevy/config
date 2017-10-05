@@ -1,6 +1,8 @@
 [user]
     name = Shea Levy
     email = shea.levy@target.com
-    signingkey = 7E813B1AF14772EB
+    signingKey = 7E813B1AF14772EB
+[commit]
+    gpgSign = true
 [merge]
     conflictstyle = diff3
