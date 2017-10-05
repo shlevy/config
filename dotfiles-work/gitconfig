@@ -1,5 +1,6 @@
 [user]
     name = Shea Levy
     email = shea.levy@target.com
+    signingkey = 7E813B1AF14772EB
 [merge]
     conflictstyle = diff3
