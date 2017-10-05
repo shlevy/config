@@ -19,12 +19,13 @@ let pkgs = import <nixpkgs>
           };
       };
     dwm = pkgs.dwm.override { patches = [ ./dwm.patch ]; };
+    lean = pkgs.lib.overrideDerivation pkgs.lean (orig: { patches = [ ./lean-coe_to_sort.patch ]; });
     emacs = pkgs.emacsWithPackages (builtins.attrValues
       { inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
           org-plus-contrib nix-buffer haskell-mode znc company-ghci
-          flycheck-haskell helm idris-mode;
+          flycheck-haskell helm idris-mode kanban lean-mode company-lean helm-lean;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix ]);
@@ -61,7 +62,7 @@ let pkgs = import <nixpkgs>
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
         inherit (pkgs.haskellPackages) idris;
-        inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo;
+        inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo lean;
       })) ++ [ pkgs.nix.dev ] ++ pkgs.nix.dev.propagatedNativeBuildInputs;
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
