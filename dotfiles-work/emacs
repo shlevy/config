@@ -59,5 +59,3 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 (require 'helm-config)
-
-(global-set-key (kbd "S-SPC") #'company-complete)
