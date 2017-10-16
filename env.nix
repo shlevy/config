@@ -24,7 +24,7 @@ let pkgs = import <nixpkgs>
       { inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
-          org-plus-contrib nix-buffer haskell-mode znc company-ghci
+          org-plus-contrib nix-buffer haskell-mode znc company-ghci nix-mode
           flycheck-haskell helm idris-mode kanban lean-mode company-lean helm-lean;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
