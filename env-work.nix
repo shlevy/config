@@ -22,7 +22,7 @@ let pkgs = import <nixpkgs>
       [ s.cabal-install s.cabal2nix ]);
     default-pkgs = builtins.attrValues (desktop-tools-scripts //
       { inherit (pkgs) gnupg unzip pass gitFull mosh file tmux
-                       bashCompletion nix gcc;
+                       bashCompletion nixUnstable gcc gnumake;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit setup-home emacs ghc;
       });

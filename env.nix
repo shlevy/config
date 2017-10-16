@@ -54,7 +54,7 @@ let pkgs = import <nixpkgs>
                        openconnect msmtp kvm gimp tmux bashCompletion evince
                        xbindkeys python2 mercurial autoconf automake
                        zip openssl cmake pkgconfig libtool lightdm terraform_0_8_5 terragrunt_0_9_8
-                       awscli ansible docker nixops sqlite jq nix boehmgc docbook_xsl kindlegen libxslt
+                       awscli ansible docker nixops sqlite jq nixUnstable boehmgc docbook_xsl kindlegen libxslt
                        libxml2 pavucontrol pamixer zoom-us /*neuron-full*/ gcc ncurses patchelf kubernetes kops
 		       discord;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
@@ -63,7 +63,7 @@ let pkgs = import <nixpkgs>
         inherit (coq) ocaml camlp5;
         inherit (pkgs.haskellPackages) idris;
         inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo lean;
-      })) ++ [ pkgs.nix.dev ] ++ pkgs.nix.dev.propagatedNativeBuildInputs;
+      })) ++ [ pkgs.nixUnstable.dev ] ++ pkgs.nixUnstable.dev.propagatedNativeBuildInputs;
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
         XDG_CONFIG_HOME = "/home-persistent/shlevy/xdg/config";
