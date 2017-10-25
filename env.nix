@@ -19,7 +19,6 @@ let pkgs = import <nixpkgs>
           };
       };
     dwm = pkgs.dwm.override { patches = [ ./dwm.patch ]; };
-    lean = pkgs.lib.overrideDerivation pkgs.lean (orig: { patches = [ ./lean-coe_to_sort.patch ]; });
     emacs = pkgs.emacsWithPackages (builtins.attrValues
       { inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
@@ -56,13 +55,13 @@ let pkgs = import <nixpkgs>
                        zip openssl cmake pkgconfig libtool lightdm terraform_0_8_5 terragrunt_0_9_8
                        awscli ansible docker nixops sqlite jq nixUnstable boehmgc docbook_xsl kindlegen libxslt
                        libxml2 pavucontrol pamixer zoom-us /*neuron-full*/ gcc ncurses patchelf kubernetes kops
-		       discord;
+		       discord lean;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp libX11;
         inherit (pkgs.texlive.combined) scheme-full;
         inherit (coq) ocaml camlp5;
         inherit (pkgs.haskellPackages) idris;
-        inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo lean;
+        inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo;
       })) ++ [ pkgs.nixUnstable.dev ] ++ pkgs.nixUnstable.dev.propagatedNativeBuildInputs;
     default-env =
       { XDG_DATA_HOME = "/home-persistent/shlevy/xdg/share";
