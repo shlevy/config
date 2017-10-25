@@ -19,7 +19,7 @@ let pkgs = import <nixpkgs>
           flycheck-haskell helm nix-mode;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
-      [ s.cabal-install s.cabal2nix ]);
+      [ s.cabal-install s.cabal2nix s.stack ]);
     default-pkgs = builtins.attrValues (desktop-tools-scripts //
       { inherit (pkgs) gnupg unzip pass gitFull mosh file tmux
                        bashCompletion nixUnstable gcc gnumake
