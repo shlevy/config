@@ -3,6 +3,7 @@ SyncState /home-persistent/shlevy/mail/mbsync/
 MaildirStore main-local
 Path /home-persistent/shlevy/mail/maildir/
 Inbox /home-persistent/shlevy/mail/maildir/INBOX
+SubFolders Verbatim
 
 IMAPAccount main
 Host mail.hover.com
