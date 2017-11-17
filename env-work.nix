@@ -16,7 +16,7 @@ let pkgs = import <nixpkgs>
       { inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka
           org-plus-contrib nix-buffer haskell-mode company-ghci
-          flycheck-haskell helm nix-mode;
+          flycheck-haskell helm nix-mode magit;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix s.stack ]);
