@@ -22,12 +22,12 @@ let pkgs = import <nixpkgs>
     emacs = pkgs.emacsWithPackages (builtins.attrValues
       { inherit (pkgs.emacsPackages) notmuch;
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
-          company fill-column-indicator flycheck-package modalka
+          company fill-column-indicator flycheck-package modalka agda2-mode
           org-plus-contrib nix-buffer haskell-mode znc company-ghci nix-mode
           flycheck-haskell helm idris-mode kanban lean-mode company-lean helm-lean;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
-      [ s.cabal-install s.cabal2nix ]);
+      [ s.cabal-install s.cabal2nix s.Agda ]);
     coq = pkgs.coq_8_6;
     linux-config-env = pkgs.buildFHSUserEnv
       {  name = "linux-config";
@@ -47,14 +47,14 @@ let pkgs = import <nixpkgs>
       unlink $out/bin/otfinfo
     '';
     default-pkgs = (builtins.attrValues (desktop-tools //
-      { inherit (pkgs) dmenu google-chrome gnupg isync unzip pass
+      { inherit (pkgs) dmenu firefox gnupg isync unzip pass
                        gitFull libreoffice mosh manpages posix_man_pages
                        src rcs ledger3 xclip scrot file vlc gnumake
                        openconnect msmtp kvm gimp tmux bashCompletion evince
                        xbindkeys python2 mercurial autoconf automake
                        zip openssl cmake pkgconfig libtool lightdm terraform_0_8_5 terragrunt_0_9_8
                        awscli ansible docker nixops sqlite jq nixUnstable boehmgc docbook_xsl kindlegen libxslt
-                       libxml2 pavucontrol pamixer zoom-us /*neuron-full*/ gcc ncurses patchelf kubernetes kops
+                       libxml2 pavucontrol pamixer /*neuron-full*/ gcc ncurses patchelf kubernetes kops
 		       discord lean;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp libX11;
