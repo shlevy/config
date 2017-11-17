@@ -6,3 +6,5 @@
     gpgSign = true
 [merge]
     conflictstyle = diff3
+[core]
+    excludesfile = ~/config/gitignore-global
