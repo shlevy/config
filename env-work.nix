@@ -18,7 +18,17 @@ let pkgs = import <nixpkgs>
           org-plus-contrib nix-buffer haskell-mode company-ghci
           flycheck-haskell helm nix-mode magit;
       });
-    ghc = pkgs.haskellPackages.ghcWithPackages (s:
+    haskellPackages = pkgs.haskell.packages.ghc821.override
+      { overrides = self: super:
+          { store = pkgs.haskell.lib.dontCheck super.store;
+            stack = self.callCabal2nix "stack" (builtins.fetchgit
+              { url = "git://github.com/commercialhaskell/stack.git";
+                rev = "7bddfaf7f9f8cd9ec1c710fa83e77262e494eee4";
+              }) {};
+            path = pkgs.haskell.lib.dontCheck (self.callHackage "path" "0.6.1" {});
+          };
+      };
+    ghc = haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix s.stack ]);
     default-pkgs = builtins.attrValues (desktop-tools-scripts //
       { inherit (pkgs) gnupg unzip pass gitFull mosh file tmux
