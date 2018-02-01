@@ -24,11 +24,12 @@ let pkgs = import <nixpkgs>
         inherit (pkgs.emacsPackagesNg) flycheck dash dash-functional f s
           company fill-column-indicator flycheck-package modalka agda2-mode
           org-plus-contrib nix-buffer haskell-mode znc company-ghci nix-mode
-          flycheck-haskell helm idris-mode kanban lean-mode company-lean helm-lean;
+          flycheck-haskell helm /*idris-mode*/ kanban lean-mode company-lean helm-lean
+          magit flycheck-ats2;
       });
     ghc = pkgs.haskellPackages.ghcWithPackages (s:
       [ s.cabal-install s.cabal2nix s.Agda ]);
-    coq = pkgs.coq_8_6;
+    coq = pkgs.coq_8_7;
     linux-config-env = pkgs.buildFHSUserEnv
       {  name = "linux-config";
          targetPkgs = p: [ p.gcc p.gnumake p.ncurses p.ncurses.dev p.bashCompletion p.qt5.full p.pkgconfig p.perl p.kmod ];
@@ -53,14 +54,15 @@ let pkgs = import <nixpkgs>
                        openconnect msmtp kvm gimp tmux bashCompletion evince
                        xbindkeys python2 mercurial autoconf automake
                        zip openssl cmake pkgconfig libtool lightdm terraform_0_8_5 terragrunt_0_9_8
-                       awscli ansible docker nixops sqlite jq nixUnstable boehmgc docbook_xsl kindlegen libxslt
+                       awscli ansible docker nixops sqlite jq nixUnstable boehmgc kindlegen libxslt
                        libxml2 pavucontrol pamixer /*neuron-full*/ gcc ncurses patchelf kubernetes kops
-		       discord lean;
+                       discord lean ats2 bc;
         inherit (pkgs.emacsPackages) notmuch proofgeneral_HEAD;
         inherit (pkgs.xorg) xmodmap xbacklight xkbcomp libX11;
         inherit (pkgs.texlive.combined) scheme-full;
+        inherit (pkgs.docbook_xsl) dbtoepub;
         inherit (coq) ocaml camlp5;
-        inherit (pkgs.haskellPackages) idris;
+        #inherit (pkgs.haskellPackages) idris;
         inherit setup-home emacs ghc coq linux-config-env openmpi-no-otfinfo;
       })) ++ [ pkgs.nixUnstable.dev ] ++ pkgs.nixUnstable.dev.propagatedNativeBuildInputs;
     default-env =
