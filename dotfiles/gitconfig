@@ -1,0 +1,12 @@
+[user]
+    name = Shea Levy
+    email = shea@shealevy.com
+    signingKey = 5C0BD6957D86FE27
+[commit]
+    gpgSign = true
+[merge]
+    conflictstyle = diff3
+[sendmail]
+    smtpencryption = tls
+    smtpserver = mail.hover.com
+    smtpuser = shea@shealevy.com
