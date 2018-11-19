@@ -28,5 +28,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".cache/mozilla" = "/home-persistent/shlevy/xdg/cache/mozilla";
     ".gitconfig" = ./dotfiles/gitconfig;
     run = "/run/user/1000";
+    src = "/home-persistent/shlevy/src";
+    config = "/home-persistent/shlevy/config";
   };
 }).provides.run
