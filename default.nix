@@ -30,5 +30,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     run = "/run/user/1000";
     src = "/home-persistent/shlevy/src";
     config = "/home-persistent/shlevy/config";
+    ".local/share/nix" = "/home-persistent/shlevy/xdg/share/nix";
   };
 }).provides.run
