@@ -31,5 +31,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     src = "/home-persistent/shlevy/src";
     config = "/home-persistent/shlevy/config";
     ".local/share/nix" = "/home-persistent/shlevy/xdg/share/nix";
+    ".msmtp.log" = "run/msmtp.log";
   };
 }).provides.run
