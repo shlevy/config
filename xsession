@@ -1,5 +1,5 @@
 #!@bash@/bin/bash
-export PATH=@emacs@/bin:@firefox@/bin:@pass@/bin:@notmuch@/bin:@movemail@/bin:@mailloop@/bin:@gnupg@/bin:@isync@/bin:@msmtp@/bin:@git@/bin:$PATH
+export PATH=@path@:$PATH
 export PASSWORD_STORE_DIR="/home-persistent/shlevy/creds/password-store/"
 export GNUPGHOME="/home-persistent/shlevy/creds/gnupg"
 @xhost@/bin/xhost +SI:localuser:$USER

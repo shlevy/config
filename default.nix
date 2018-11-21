@@ -4,13 +4,18 @@ let
   emacs = pkgs.emacsWithPackages (epkgs: [ epkgs.exwm epkgs.notmuch epkgs.znc epkgs.magit ]);
   xsession = pkgs.substituteAll {
     src = ./xsession;
+    path = ((import ./path-programs.nix).compose {
+      requires = {};
+      provides.packages = [
+        emacs pkgs.firefox pkgs.pass
+	pkgs.gnupg pkgs.isync pkgs.msmtp
+	pkgs.git pkgs.emacsPackages.notmuch
+	desktop-tools.move-mail desktop-tools.mail-loop
+      ];
+    }).requires.env.PATH;
     isExecutable = true;
-    inherit (pkgs) bash firefox pass gnupg isync msmtp git;
-    inherit (pkgs.emacsPackages) notmuch;
+    inherit (pkgs) bash;
     inherit (pkgs.xorg) xhost;
-    movemail = desktop-tools.move-mail;
-    mailloop = desktop-tools.mail-loop;
-    inherit emacs;
   };
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
   requires = {};
