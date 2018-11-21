@@ -11,6 +11,7 @@ let
 	pkgs.gnupg pkgs.isync pkgs.msmtp
 	pkgs.git pkgs.emacsPackages.notmuch
 	desktop-tools.move-mail desktop-tools.mail-loop
+	pkgs.wire-desktop
       ];
     }).requires.env.PATH;
     isExecutable = true;
@@ -37,5 +38,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     config = "/home-persistent/shlevy/config";
     ".local/share/nix" = "/home-persistent/shlevy/xdg/share/nix";
     ".msmtp.log" = "run/msmtp.log";
+    ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
   };
 }).provides.run
