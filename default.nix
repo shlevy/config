@@ -23,7 +23,7 @@ let
     provides = {};
   };
 
-  emacs = (pkgs.callPackage ./emacs {}).compose {
+  emacs = (pkgs.callPackage ./emacs.nix {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
       (exwm.requires.emacs-package epkgs)
@@ -36,7 +36,6 @@ let
       notmuch.requires.emacs-config
       znc.requires.emacs-config
       git.requires.emacs-config
-      (builtins.readFile ./emacs/emacs)
     ];
   };
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
