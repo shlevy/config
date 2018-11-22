@@ -3,14 +3,20 @@ let
   pkgs = import <nixpkgs> {};
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
+  exwm = (pkgs.callPackage ./exwm.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
-      epkgs.exwm
+      (exwm.requires.emacs-package epkgs)
       epkgs.notmuch
       epkgs.znc
       epkgs.magit
     ];
+    provides.emacs-config = exwm.requires.emacs-config + "\n" + builtins.readFile ./emacs/emacs;
   };
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
     requires = {};
@@ -32,12 +38,12 @@ let
         }).requires.env.PATH;
       };
       oneshots = [
-	"${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER"
+        exwm.requires.oneshot
 	"xrdb -merge $HOME/config/Xresources"
 	"xrandr --output eDP1 --fbmm 292x165"
       ];
       # TODO switch to i3
-      wmcmd = "emacs";
+      wmcmd = exwm.requires.wmcmd;
     };
   }).requires.links.".xsession";
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
@@ -50,6 +56,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".msmtprc" = ./dotfiles/msmtprc;
     ".notmuch-config" = ./dotfiles/notmuch-config;
     ".emacs" = emacs.requires.links.".emacs";
+    ".emacs.d" = emacs.requires.links.".emacs.d";
     ".mozilla" = "/home-persistent/shlevy/xdg/config/mozilla";
     ".xsession-errors" = "run/xsession-errors";
     ".Xauthority" = "run/Xauthority";
