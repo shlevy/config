@@ -2,22 +2,33 @@ let
   pkgs = import <nixpkgs> {}; # TODO pin
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
   emacs = pkgs.emacsWithPackages (epkgs: [ epkgs.exwm epkgs.notmuch epkgs.znc epkgs.magit ]);
-  xsession = pkgs.substituteAll {
-    src = ./xsession;
-    path = ((import ./path-programs.nix).compose {
-      requires = {};
-      provides.packages = [
-        emacs pkgs.firefox pkgs.pass
-	pkgs.gnupg pkgs.isync pkgs.msmtp
-	pkgs.git pkgs.emacsPackages.notmuch
-	desktop-tools.move-mail desktop-tools.mail-loop
-	pkgs.wire-desktop
+  xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
+    requires = {};
+    provides = {
+      env = {
+        PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
+	GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
+	GDK_SCALE = "0.8";
+	GDK_DPI_SCALE = "0.8";
+	PATH = ((import ./path-programs.nix).compose {
+          requires = {};
+          provides.packages = [
+	    emacs pkgs.firefox pkgs.pass
+	    pkgs.gnupg pkgs.isync pkgs.msmtp
+	    pkgs.git pkgs.emacsPackages.notmuch
+	    desktop-tools.move-mail desktop-tools.mail-loop
+	    pkgs.wire-desktop
+          ];
+        }).requires.env.PATH;
+      };
+      oneshots = [
+	"${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER"
+	"xrdb -merge $HOME/config/Xresources"
+	"xrandr --output eDP1 --fbmm 292x165"
       ];
-    }).requires.env.PATH;
-    isExecutable = true;
-    inherit (pkgs) bash;
-    inherit (pkgs.xorg) xhost;
-  };
+      wmcmd = "emacs";
+    };
+  }).requires.links.".xsession";
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
   requires = {};
   provides.name = "shlevy-home";
