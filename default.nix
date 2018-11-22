@@ -8,15 +8,24 @@ let
     provides = {};
   };
 
+  notmuch = (pkgs.callPackage ./notmuch.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
       (exwm.requires.emacs-package epkgs)
-      epkgs.notmuch
+      (notmuch.requires.emacs-package epkgs)
       epkgs.znc
       epkgs.magit
     ];
-    provides.emacs-config = exwm.requires.emacs-config + "\n" + builtins.readFile ./emacs/emacs;
+    provides.emacs-config = builtins.concatStringsSep "\n" [
+      exwm.requires.emacs-config
+      notmuch.requires.emacs-config
+      (builtins.readFile ./emacs/emacs)
+    ];
   };
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
     requires = {};
@@ -31,7 +40,7 @@ let
           provides.packages = [
 	    emacs.requires.package pkgs.firefox pkgs.pass
 	    pkgs.gnupg pkgs.isync pkgs.msmtp
-	    pkgs.git pkgs.emacsPackages.notmuch /* TODO notmuch duplication?? */
+	    pkgs.git notmuch.requires.package
 	    desktop-tools.move-mail desktop-tools.mail-loop
 	    pkgs.wire-desktop
           ];
@@ -54,7 +63,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".xsession" = xsession;
     ".mbsyncrc" = ./dotfiles/mbsyncrc;
     ".msmtprc" = ./dotfiles/msmtprc;
-    ".notmuch-config" = ./dotfiles/notmuch-config;
+    ".notmuch-config" = notmuch.requires.links.".notmuch-config";
     ".emacs" = emacs.requires.links.".emacs";
     ".emacs.d" = emacs.requires.links.".emacs.d";
     ".mozilla" = "/home-persistent/shlevy/xdg/config/mozilla";

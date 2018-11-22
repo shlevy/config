@@ -1,30 +1,8 @@
 (global-set-key (kbd "C-x g") #'magit-status)
-
-(autoload 'notmuch "notmuch" "notmuch mail" t)
-(setq notmuch-crypto-process-mime t)
-(setq notmuch-fcc-dirs "Archives")
-(setq message-kill-buffer-on-exit t)
-(require 'mml2015)
-(setq mml2015-encrypt-to-self t)
-(setq mml2015-sign-with-sender t)
-(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
-(with-eval-after-load 'notmuch-show
-  (defun notmuch-show-delete-message-then-next-or-next-thread ()
-    (interactive)
-    (notmuch-show-tag '("+deleted"))
-    (unless (notmuch-show-next-open-message)
-      (notmuch-show-next-thread t)))
-  (define-key notmuch-show-mode-map "d" 'notmuch-show-delete-message-then-next-or-next-thread))
-(with-eval-after-load 'notmuch
-  (defun notmuch-search-delete-thread ()
-    (interactive)
-    (notmuch-search-tag '("+deleted"))
-    (notmuch-search-next-thread))
-  (define-key notmuch-search-mode-map "d" 'notmuch-search-delete-thread))
 (setq
    backup-by-copying t
    backup-directory-alist
-    '(("." . "/home-persistent/shlevy/xdg/cache/emacs/saves"))
+    '(("." . "/home-persistent/shlevy/xdg/cache/emacs/saves")) ; TODO find a nicer way to specify this
    delete-old-versions t
    kept-new-versions 6
    kept-old-versions 2
@@ -36,34 +14,3 @@
 	  `(("linode.shealevy.com" 5000 t
 	    ((freenode "shlevy" ,(shell-command-to-string cmd))))))))
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mail-envelope-from 'header)
- '(mail-specify-envelope-from t)
- '(message-sendmail-envelope-from 'header)
- '(mml-secure-key-preferences
-   (quote
-    ((OpenPGP
-      (sign)
-      (encrypt
-       ("shea@shealevy.com" "37DC4CAB574ED7A7679ACC0BF483E15E39118520")))
-     (CMS
-      (sign)
-      (encrypt)))))
- '(notmuch-saved-searches
-   (quote
-    ((:name "inbox" :query "tag:inbox" :key "i")
-     (:name "unread" :query "tag:unread" :key "u")
-     (:name "flagged" :query "tag:flagged" :key "f")
-     (:name "sent" :query "tag:sent" :key "t")
-     (:name "drafts" :query "tag:draft" :key "d")
-     (:name "all mail" :query "*" :key "a")
-     (:name "spam" :query "is:spam"))))
- '(send-mail-function (quote sendmail-send-it))
- '(send-mail-program "msmtp")
- '(sendmail-program "msmtp"))
