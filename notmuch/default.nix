@@ -56,6 +56,6 @@
         sendmail-program "msmtp")
     '';
 
-    requires.links.".notmuch-config" = ./dotfiles/notmuch-config;
+    requires.links.".notmuch-config" = ./notmuch-config;
   };
 }

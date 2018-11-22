@@ -8,7 +8,7 @@ let
     provides = {};
   };
 
-  notmuch = (pkgs.callPackage ./notmuch.nix {}).compose {
+  notmuch = (pkgs.callPackage ./notmuch {}).compose {
     requires = {};
     provides = {};
   };
