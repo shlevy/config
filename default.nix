@@ -18,18 +18,24 @@ let
     provides = {};
   };
 
+  git = (pkgs.callPackage ./git.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
       (exwm.requires.emacs-package epkgs)
       (notmuch.requires.emacs-package epkgs)
       (znc.requires.emacs-package epkgs)
-      epkgs.magit
+      (git.requires.emacs-package epkgs)
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
       znc.requires.emacs-config
+      git.requires.emacs-config
       (builtins.readFile ./emacs/emacs)
     ];
   };
@@ -46,7 +52,7 @@ let
           provides.packages = [
 	    emacs.requires.package pkgs.firefox pkgs.pass
 	    pkgs.gnupg pkgs.isync pkgs.msmtp
-	    pkgs.git notmuch.requires.package
+	    git.requires.package notmuch.requires.package
 	    desktop-tools.move-mail desktop-tools.mail-loop
 	    pkgs.wire-desktop
           ];
@@ -76,7 +82,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".xsession-errors" = "run/xsession-errors";
     ".Xauthority" = "run/Xauthority";
     ".cache/mozilla" = "/home-persistent/shlevy/xdg/cache/mozilla";
-    ".gitconfig" = ./dotfiles/gitconfig;
+    ".gitconfig" = git.requires.links.".gitconfig";
     run = "/run/user/1000";
     src = "/home-persistent/shlevy/src";
     config = "/home-persistent/shlevy/config";
