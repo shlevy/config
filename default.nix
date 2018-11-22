@@ -1,7 +1,17 @@
 let
-  pkgs = import <nixpkgs> {}; # TODO pin
+  # TODO pin/flakify external deps
+  pkgs = import <nixpkgs> {};
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
-  emacs = pkgs.emacsWithPackages (epkgs: [ epkgs.exwm epkgs.notmuch epkgs.znc epkgs.magit ]);
+
+  emacs = (pkgs.callPackage ./emacs {}).compose {
+    requires = {};
+    provides.emacs-packages = epkgs: [
+      epkgs.exwm
+      epkgs.notmuch
+      epkgs.znc
+      epkgs.magit
+    ];
+  };
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
     requires = {};
     provides = {
@@ -13,9 +23,9 @@ let
 	PATH = ((import ./path-programs.nix).compose {
           requires = {};
           provides.packages = [
-	    emacs pkgs.firefox pkgs.pass
+	    emacs.requires.package pkgs.firefox pkgs.pass
 	    pkgs.gnupg pkgs.isync pkgs.msmtp
-	    pkgs.git pkgs.emacsPackages.notmuch
+	    pkgs.git pkgs.emacsPackages.notmuch /* TODO notmuch duplication?? */
 	    desktop-tools.move-mail desktop-tools.mail-loop
 	    pkgs.wire-desktop
           ];
@@ -26,6 +36,7 @@ let
 	"xrdb -merge $HOME/config/Xresources"
 	"xrandr --output eDP1 --fbmm 292x165"
       ];
+      # TODO switch to i3
       wmcmd = "emacs";
     };
   }).requires.links.".xsession";
@@ -38,7 +49,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".mbsyncrc" = ./dotfiles/mbsyncrc;
     ".msmtprc" = ./dotfiles/msmtprc;
     ".notmuch-config" = ./dotfiles/notmuch-config;
-    ".emacs" = ./dotfiles/emacs;
+    ".emacs" = emacs.requires.links.".emacs";
     ".mozilla" = "/home-persistent/shlevy/xdg/config/mozilla";
     ".xsession-errors" = "run/xsession-errors";
     ".Xauthority" = "run/Xauthority";
