@@ -13,17 +13,23 @@ let
     provides = {};
   };
 
+  znc = (import ./znc.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
       (exwm.requires.emacs-package epkgs)
       (notmuch.requires.emacs-package epkgs)
-      epkgs.znc
+      (znc.requires.emacs-package epkgs)
       epkgs.magit
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
+      znc.requires.emacs-config
       (builtins.readFile ./emacs/emacs)
     ];
   };
