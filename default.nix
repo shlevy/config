@@ -18,7 +18,7 @@ let
     provides = {};
   };
 
-  git = (pkgs.callPackage ./git.nix {}).compose {
+  git = (pkgs.callPackage ./git {}).compose {
     requires = {};
     provides = {};
   };

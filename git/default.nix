@@ -8,7 +8,7 @@
 
       emacs-config = ''(global-set-key (kbd "C-x g") #'magit-status)'';
 
-      links.".gitconfig" = ./dotfiles/gitconfig;
+      links.".gitconfig" = ./gitconfig;
     };
   };
 }
