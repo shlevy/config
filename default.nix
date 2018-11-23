@@ -1,3 +1,4 @@
+# TODO trace down home-persistent references.
 let
   # TODO pin/flakify external deps
   pkgs = import <nixpkgs> {};
@@ -23,6 +24,11 @@ let
     provides = {};
   };
 
+  nix = (pkgs.callPackage ./nix.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs.nix {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
@@ -30,6 +36,7 @@ let
       (notmuch.requires.emacs-package epkgs)
       (znc.requires.emacs-package epkgs)
       (git.requires.emacs-package epkgs)
+      (nix.requires.emacs-package epkgs)
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -38,6 +45,7 @@ let
       git.requires.emacs-config
     ];
   };
+
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
     requires = {};
     provides = {
@@ -53,7 +61,7 @@ let
 	    pkgs.gnupg pkgs.isync pkgs.msmtp
 	    git.requires.package notmuch.requires.package
 	    desktop-tools.move-mail desktop-tools.mail-loop
-	    pkgs.wire-desktop
+	    pkgs.wire-desktop nix.requires.package
           ];
         }).requires.env.PATH;
       };
@@ -85,7 +93,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     run = "/run/user/1000";
     src = "/home-persistent/shlevy/src";
     config = "/home-persistent/shlevy/config";
-    ".local/share/nix" = "/home-persistent/shlevy/xdg/share/nix";
+    ".local/share/nix" = nix.requires.links.".local/share/nix";
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
   };
