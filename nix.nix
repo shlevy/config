@@ -5,6 +5,8 @@
 
     requires.emacs-package = epkgs: epkgs.nix-mode;
 
+    requires.emacs-config = "(setq nix-indent-function 'nix-indent-line)";
+
     requires.package = nix;
   };
 }

@@ -43,6 +43,7 @@ let
       notmuch.requires.emacs-config
       znc.requires.emacs-config
       git.requires.emacs-config
+      nix.requires.emacs-config
     ];
   };
 
