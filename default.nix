@@ -29,6 +29,11 @@ let
     provides = {};
   };
 
+  fci = (import ./fci.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs.nix {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
@@ -37,6 +42,7 @@ let
       (znc.requires.emacs-package epkgs)
       (git.requires.emacs-package epkgs)
       (nix.requires.emacs-package epkgs)
+      (fci.requires.emacs-package epkgs)
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -44,6 +50,7 @@ let
       znc.requires.emacs-config
       git.requires.emacs-config
       nix.requires.emacs-config
+      fci.requires.emacs-config
     ];
   };
 
