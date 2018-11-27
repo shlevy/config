@@ -102,6 +102,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     src = "/home-persistent/shlevy/src";
     config = "/home-persistent/shlevy/config";
     ".local/share/nix" = nix.requires.links.".local/share/nix";
+    ".cache/nix" = nix.requires.links.".cache/nix";
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
