@@ -82,6 +82,11 @@ let
       wmcmd = exwm.requires.wmcmd;
     };
   }).requires.links.".xsession";
+
+  systemd-user = (pkgs.callPackage ./systemd-user.nix {}).compose {
+    requires = {};
+    provides.overrides = {};
+  };
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
   requires = {};
   provides.name = "shlevy-home";
@@ -107,5 +112,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     Downloads = "run/Downloads";
+    ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
   };
 }).provides.run
