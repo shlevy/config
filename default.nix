@@ -120,5 +120,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     Downloads = "run/Downloads";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
+    ".config/pulse" = pulseaudio.requires.links.".config/pulse";
   };
 }).provides.run
