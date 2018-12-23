@@ -85,7 +85,14 @@ let
 
   systemd-user = (pkgs.callPackage ./systemd-user.nix {}).compose {
     requires = {};
-    provides.overrides = {};
+    provides.systemd-user-overrides = {
+      "pulseaudio.service" = pulseaudio.requires.systemd-user-overrides."pulseaudio.service";
+    };
+  };
+
+  pulseaudio = (import ./pulseaudio.nix).compose {
+    requires = {};
+    provides = {};
   };
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
   requires = {};
