@@ -106,5 +106,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
+    Downloads = "run/Downloads";
   };
 }).provides.run
