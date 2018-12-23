@@ -59,24 +59,24 @@ let
     provides = {
       env = {
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
-	GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
-	GDK_SCALE = "0.8";
-	GDK_DPI_SCALE = "0.8";
-	PATH = ((import ./path-programs.nix).compose {
+        GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
+        GDK_SCALE = "0.8";
+        GDK_DPI_SCALE = "0.8";
+        PATH = ((import ./path-programs.nix).compose {
           requires = {};
           provides.packages = [
-	    emacs.requires.package pkgs.firefox pkgs.pass
-	    pkgs.gnupg pkgs.isync pkgs.msmtp
-	    git.requires.package notmuch.requires.package
-	    desktop-tools.move-mail desktop-tools.mail-loop
-	    pkgs.wire-desktop nix.requires.package
+            emacs.requires.package pkgs.firefox pkgs.pass
+            pkgs.gnupg pkgs.isync pkgs.msmtp
+            git.requires.package notmuch.requires.package
+            desktop-tools.move-mail desktop-tools.mail-loop
+            pkgs.wire-desktop nix.requires.package
           ];
         }).requires.env.PATH;
       };
       oneshots = [
         exwm.requires.oneshot
-	"xrdb -merge $HOME/config/Xresources"
-	"xrandr --output eDP1 --fbmm 292x165"
+        "xrdb -merge $HOME/config/Xresources"
+        "xrandr --output eDP1 --fbmm 292x165"
       ];
       # TODO switch to i3
       wmcmd = exwm.requires.wmcmd;
