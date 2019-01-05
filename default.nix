@@ -14,6 +14,11 @@ let
     provides = {};
   };
 
+  ledger = (pkgs.callPackage ./ledger.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   znc = (import ./znc.nix).compose {
     requires = {};
     provides = {};
@@ -43,6 +48,7 @@ let
       (git.requires.emacs-package epkgs)
       (nix.requires.emacs-package epkgs)
       (fci.requires.emacs-package epkgs)
+      (ledger.requires.emacs-package epkgs)
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -69,7 +75,7 @@ let
             pkgs.gnupg pkgs.isync pkgs.msmtp
             git.requires.package notmuch.requires.package
             desktop-tools.move-mail desktop-tools.mail-loop
-            pkgs.wire-desktop nix.requires.package
+            pkgs.wire-desktop nix.requires.package ledger.requires.package
           ];
         }).requires.env.PATH;
       };
