@@ -39,6 +39,18 @@ let
     provides = {};
   };
 
+  org = (import ./org.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
+  org-drill = (pkgs.callPackage ./org-drill.nix {}).compose {
+    requires = {};
+    provides = {
+      org-drill-files = [ "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/1.org" ];
+    };
+  };
+
   emacs = (pkgs.callPackage ./emacs.nix {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
@@ -49,6 +61,7 @@ let
       (nix.requires.emacs-package epkgs)
       (fci.requires.emacs-package epkgs)
       (ledger.requires.emacs-package epkgs)
+      (org.requires.emacs-package epkgs)
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -57,6 +70,7 @@ let
       git.requires.emacs-config
       nix.requires.emacs-config
       fci.requires.emacs-config
+      org-drill.requires.emacs-config
     ];
   };
 
@@ -118,6 +132,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".gitconfig" = git.requires.links.".gitconfig";
     run = "/run/user/1000";
     src = "/home-persistent/shlevy/src";
+    documents = "/home-persistent/shlevy/documents";
     config = "/home-persistent/shlevy/config";
     ".local/share/nix" = nix.requires.links.".local/share/nix";
     ".cache/nix" = nix.requires.links.".cache/nix";
