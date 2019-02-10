@@ -51,6 +51,11 @@ let
     };
   };
 
+  coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_9; }).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs.nix {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
@@ -62,6 +67,7 @@ let
       (fci.requires.emacs-package epkgs)
       (ledger.requires.emacs-package epkgs)
       (org.requires.emacs-package epkgs)
+      (coq.requires.emacs-package epkgs)
     ];
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -89,7 +95,7 @@ let
             pkgs.gnupg pkgs.isync pkgs.msmtp
             git.requires.package notmuch.requires.package
             desktop-tools.move-mail desktop-tools.mail-loop
-            pkgs.wire-desktop nix.requires.package ledger.requires.package
+            pkgs.wire-desktop nix.requires.package ledger.requires.package coq.requires.package
           ];
         }).requires.env.PATH;
       };
