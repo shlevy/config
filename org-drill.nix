@@ -1,9 +1,9 @@
-{ fetchFromBitbucket }: let
-  src = fetchFromBitbucket {
-    owner = "eeeickythump";
+{ fetchFromGitHub }: let
+  src = fetchFromGitHub {
+    owner = "hakanserce";
     repo = "org-drill";
-    rev = "01b05cd7561ad69e5ec9c1200414d4fa128c9a17";
-    sha256 = "1w69hp2fbmq03xm10yalxrm8f7mhrbjc689k5wjnqgrqcwipi5gj";
+    rev = "9e07edde08ce4b439bbc8baa33d3f09d28745c81";
+    sha256 = "1qhp9rzqscdbhlvdf1h4jl8sjpyj1ggy7by5x1h17vlhpwlpi0hg";
   };
 in {
   compose = { provides, requires }: let
