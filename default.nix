@@ -142,11 +142,13 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     config = "/home-persistent/shlevy/config";
     ".local/share/nix" = nix.requires.links.".local/share/nix";
     ".cache/nix" = nix.requires.links.".cache/nix";
+    ".cache/nix-fetchers" = nix.requires.links.".cache/nix-fetchers";
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     Downloads = "run/Downloads";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
+    ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
   };
 }).provides.run
