@@ -47,7 +47,10 @@ let
   org-drill = (pkgs.callPackage ./org-drill.nix {}).compose {
     requires = {};
     provides = {
-      org-drill-files = [ "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/1.org" ];
+      org-drill-files = [
+        "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/1.org"
+        "/home/shlevy/documents/notes/mark/2019/02/06.org"
+      ];
     };
   };
 
