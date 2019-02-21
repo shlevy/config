@@ -1,5 +1,8 @@
-{ emacsWithPackages, writeText }:
-{
+{ emacs, emacsPackagesNgFor, imagemagick, writeText }: let
+  inherit (emacsPackagesNgFor (emacs.override {
+    inherit imagemagick;
+  })) emacsWithPackages;
+in {
   compose = { provides, requires }: let
     emacs = emacsWithPackages provides.emacs-packages;
   in {
