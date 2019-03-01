@@ -49,7 +49,9 @@ let
     provides = {
       org-drill-files = [
         "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/1.org"
+        "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/2.org"
         "/home/shlevy/documents/notes/mark/2019/02/06.org"
+        "/home/shlevy/documents/notes/mark/2019/02/20.org"
       ];
     };
   };
@@ -98,7 +100,8 @@ let
             pkgs.gnupg pkgs.isync pkgs.msmtp
             git.requires.package notmuch.requires.package
             desktop-tools.move-mail desktop-tools.mail-loop
-            pkgs.wire-desktop nix.requires.package ledger.requires.package coq.requires.package
+            pkgs.wire-desktop nix.requires.package ledger.requires.package
+            coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
           ];
         }).requires.env.PATH;
       };
