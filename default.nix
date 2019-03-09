@@ -85,6 +85,7 @@ let
       nix.requires.emacs-config
       fci.requires.emacs-config
       org-drill.requires.emacs-config
+      direnv.requires.emacs-config
       flycheck.requires.emacs-config
       haskell.requires.emacs-config
       company.requires.emacs-config
