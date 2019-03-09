@@ -73,7 +73,10 @@ let
       (ledger.requires.emacs-package epkgs)
       (org.requires.emacs-package epkgs)
       (coq.requires.emacs-package epkgs)
-    ];
+      (direnv.requires.emacs-package epkgs)
+      (flycheck.requires.emacs-package epkgs)
+      (company.requires.emacs-package epkgs)
+    ] ++ (haskell.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
@@ -82,6 +85,9 @@ let
       nix.requires.emacs-config
       fci.requires.emacs-config
       org-drill.requires.emacs-config
+      flycheck.requires.emacs-config
+      haskell.requires.emacs-config
+      company.requires.emacs-config
     ];
   };
 
@@ -103,7 +109,7 @@ let
             pkgs.wire-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package
-          ];
+          ] ++ haskell.requires.packages;
         }).requires.env.PATH;
       };
       oneshots = [
@@ -143,6 +149,21 @@ let
     provides.bashrc = builtins.concatStringsSep "\n" [
       direnv.requires.bashrc
     ];
+  };
+
+  flycheck = (import ./flycheck.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
+  haskell = (pkgs.callPackage ./haskell.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
+  company = (import ./company.nix).compose {
+    requires = {};
+    provides = {};
   };
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
   requires = {};
