@@ -102,6 +102,7 @@ let
             desktop-tools.move-mail desktop-tools.mail-loop
             pkgs.wire-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
+            lorri.requires.package direnv.requires.package
           ];
         }).requires.env.PATH;
       };
@@ -125,6 +126,23 @@ let
   pulseaudio = (import ./pulseaudio.nix).compose {
     requires = {};
     provides = {};
+  };
+
+  lorri = (pkgs.callPackage ./lorri.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
+  direnv = (pkgs.callPackage ./direnv.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
+  bashrc = (pkgs.callPackage ./bashrc.nix {}).compose {
+    requires = {};
+    provides.bashrc = builtins.concatStringsSep "\n" [
+      direnv.requires.bashrc
+    ];
   };
 in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
   requires = {};
@@ -151,10 +169,13 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".cache/nix-fetchers" = nix.requires.links.".cache/nix-fetchers";
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
+    ".config/direnv" = direnv.requires.links.".config/direnv";
+    ".cache/lorri" = lorri.requires.links.".cache/lorri";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     Downloads = "run/Downloads";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
     ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
+    ".bashrc" = bashrc.requires.links.".bashrc";
   };
 }).provides.run
