@@ -199,5 +199,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
     ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
     ".bashrc" = bashrc.requires.links.".bashrc";
+    ".cabal" = haskell.requires.links.".cabal";
   };
 }).provides.run

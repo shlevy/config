@@ -14,5 +14,6 @@
       (push 'company-ghci company-backends)
     '';
     requires.packages = [ ghc cabal-install cabal2nix ];
+    requires.links.".cabal" = "/home-persistent/shlevy/xdg/config/cabal";
   };
 }
