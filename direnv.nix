@@ -9,6 +9,6 @@
 
     requires.emacs-package = epkgs: epkgs.direnv;
 
-    requires.emacs-config = "(direnv-mode)";
+    requires.emacs-config = "(add-hook 'after-init-hook 'direnv-mode)";
   };
 }
