@@ -56,6 +56,11 @@ let
     };
   };
 
+  org-brain = (import ./org-brain.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
   coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_9; }).compose {
     requires = {};
     provides = {};
@@ -76,6 +81,7 @@ let
       (direnv.requires.emacs-package epkgs)
       (flycheck.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
+      (org-brain.requires.emacs-package epkgs)
     ] ++ (haskell.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -89,6 +95,7 @@ let
       flycheck.requires.emacs-config
       haskell.requires.emacs-config
       company.requires.emacs-config
+      org-brain.requires.emacs-config
     ];
   };
 
