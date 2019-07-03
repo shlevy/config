@@ -1,7 +1,9 @@
 # TODO trace down home-persistent references.
 let
   # TODO pin/flakify external deps
-  pkgs = import <nixpkgs> {};
+  pkgs = import <nixpkgs> {
+    config.allowUnfree = true;
+  };
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
   exwm = (pkgs.callPackage ./exwm.nix {}).compose {
@@ -116,7 +118,7 @@ let
             desktop-tools.move-mail desktop-tools.mail-loop
             pkgs.wire-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
-            lorri.requires.package direnv.requires.package
+            lorri.requires.package direnv.requires.package slack.requires.package
           ] ++ haskell.requires.packages;
         }).requires.env.PATH;
       };
@@ -169,6 +171,11 @@ let
     provides = {};
   };
 
+  slack = (pkgs.callPackage ./slack.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   company = (import ./company.nix).compose {
     requires = {};
     provides = {};
@@ -205,6 +212,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
     ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
+    ".config/Slack" = slack.requires.links.".config/Slack";
     ".bashrc" = bashrc.requires.links.".bashrc";
     ".cabal" = haskell.requires.links.".cabal";
   };
