@@ -106,6 +106,7 @@ let
     provides = {
       env = {
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
+        HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         GDK_SCALE = "0.8";
         GDK_DPI_SCALE = "0.8";
@@ -119,6 +120,7 @@ let
             pkgs.wire-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package slack.requires.package
+            spotify.requires.package
           ] ++ haskell.requires.packages;
         }).requires.env.PATH;
       };
@@ -176,6 +178,11 @@ let
     provides = {};
   };
 
+  spotify = (pkgs.callPackage ./spotify.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   company = (import ./company.nix).compose {
     requires = {};
     provides = {};
@@ -213,6 +220,9 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
     ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
     ".config/Slack" = slack.requires.links.".config/Slack";
+    ".config/spotify" = spotify.requires.links.".config/spotify";
+    ".cache/spotify" = spotify.requires.links.".cache/spotify";
+    ".cache/mesa_shader_cache" = spotify.requires.links.".cache/mesa_shader_cache";
     ".bashrc" = bashrc.requires.links.".bashrc";
     ".cabal" = haskell.requires.links.".cabal";
   };
