@@ -98,6 +98,7 @@ let
       haskell.requires.emacs-config
       company.requires.emacs-config
       org-brain.requires.emacs-config
+      org.requires.emacs-config
     ];
   };
 
@@ -120,7 +121,7 @@ let
             pkgs.wire-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package slack.requires.package
-            spotify.requires.package
+            spotify.requires.package pkgs.clang
           ] ++ haskell.requires.packages;
         }).requires.env.PATH;
       };
