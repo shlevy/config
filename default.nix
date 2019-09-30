@@ -118,7 +118,7 @@ let
             pkgs.gnupg pkgs.isync pkgs.msmtp
             git.requires.package notmuch.requires.package
             desktop-tools.move-mail desktop-tools.mail-loop
-            pkgs.wire-desktop nix.requires.package ledger.requires.package
+            pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package slack.requires.package
             spotify.requires.package pkgs.clang
@@ -213,6 +213,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".cache/nix-fetchers" = nix.requires.links.".cache/nix-fetchers";
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
+    ".config/Signal" = "/home-persistent/shlevy/xdg/config/Signal";
     ".config/direnv" = direnv.requires.links.".config/direnv";
     ".cache/lorri" = lorri.requires.links.".cache/lorri";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";

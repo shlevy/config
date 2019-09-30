@@ -1,7 +1,7 @@
 { pkgs }: let
   lorri-src = builtins.extraBuiltins.fetch-git {
-    url = "git@github.com:tweag/lorri";
-    revision = "0ae6642c041b5b95a908186a01be6fa94d4d91c6";
+    url = "git://github.com/target/lorri";
+    revision = "3beec759deee8b95b4febed03df0ef3c1b8ffff6";
     branch = "master";
   };
 in {
