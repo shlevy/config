@@ -16,6 +16,11 @@ let
     provides = {};
   };
 
+  cask = (pkgs.callPackage ./cask.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   ledger = (pkgs.callPackage ./ledger.nix {}).compose {
     requires = {};
     provides = {};
@@ -73,6 +78,7 @@ let
     provides.emacs-packages = epkgs: [
       (exwm.requires.emacs-package epkgs)
       (notmuch.requires.emacs-package epkgs)
+      (cask.requires.emacs-package epkgs)
       (znc.requires.emacs-package epkgs)
       (git.requires.emacs-package epkgs)
       (nix.requires.emacs-package epkgs)
@@ -88,6 +94,7 @@ let
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
+      cask.requires.emacs-config
       znc.requires.emacs-config
       git.requires.emacs-config
       nix.requires.emacs-config
@@ -121,7 +128,7 @@ let
             pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package slack.requires.package
-            spotify.requires.package pkgs.clang
+            spotify.requires.package pkgs.clang cask.requires.package
           ] ++ haskell.requires.packages;
         }).requires.env.PATH;
       };
