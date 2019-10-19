@@ -68,6 +68,11 @@ let
     provides = {};
   };
 
+  intentionel = (import ./intentionel.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
   coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_9; }).compose {
     requires = {};
     provides = {};
@@ -90,6 +95,7 @@ let
       (flycheck.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
+      (intentionel.requires.emacs-package epkgs)
     ] ++ (haskell.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
