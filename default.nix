@@ -134,6 +134,7 @@ let
             pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package slack.requires.package
+            vlc.requires.package
             spotify.requires.package pkgs.clang cask.requires.package
           ] ++ haskell.requires.packages;
         }).requires.env.PATH;
@@ -192,6 +193,11 @@ let
     provides = {};
   };
 
+  vlc = (pkgs.callPackage ./vlc.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   spotify = (pkgs.callPackage ./spotify.nix {}).compose {
     requires = {};
     provides = {};
@@ -235,6 +241,7 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
     ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
     ".config/Slack" = slack.requires.links.".config/Slack";
+    ".config/vlc" = vlc.requires.links.".config/vlc";
     ".config/spotify" = spotify.requires.links.".config/spotify";
     ".cache/spotify" = spotify.requires.links.".cache/spotify";
     ".cache/mesa_shader_cache" = spotify.requires.links.".cache/mesa_shader_cache";
