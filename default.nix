@@ -134,7 +134,7 @@ let
             pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
             coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
             lorri.requires.package direnv.requires.package slack.requires.package
-            vlc.requires.package
+            vlc.requires.package pkgs.pavucontrol
             spotify.requires.package pkgs.clang cask.requires.package
           ] ++ haskell.requires.packages;
         }).requires.env.PATH;
