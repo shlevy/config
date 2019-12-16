@@ -7,7 +7,7 @@
       (require 'exwm)
       (require 'exwm-config)
       (require 'exwm-randr)
-      (setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "DP1"))
+      (setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "DP1" 2 "eDP1" 3 "DP1"))
       (add-hook 'exwm-randr-screen-change-hook
         (lambda ()
           (start-process-shell-command
