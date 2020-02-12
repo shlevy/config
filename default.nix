@@ -92,11 +92,10 @@ let
       (org.requires.emacs-package epkgs)
       (coq.requires.emacs-package epkgs)
       (direnv.requires.emacs-package epkgs)
-      (flycheck.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
-    ] ++ (haskell.requires.emacs-packages epkgs);
+    ] ++ (haskell.requires.emacs-packages epkgs) ++ (rust.requires.emacs-packages epkgs) ++ (flycheck.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
@@ -109,6 +108,7 @@ let
       direnv.requires.emacs-config
       flycheck.requires.emacs-config
       haskell.requires.emacs-config
+      rust.requires.emacs-config
       company.requires.emacs-config
       org-brain.requires.emacs-config
       org.requires.emacs-config
@@ -136,7 +136,8 @@ let
             lorri.requires.package direnv.requires.package slack.requires.package
             vlc.requires.package pkgs.pavucontrol gimp.requires.package
             spotify.requires.package pkgs.clang cask.requires.package
-          ] ++ haskell.requires.packages;
+            pkgs.rustc pkgs.cargo pkgs.rustfmt
+          ] ++ haskell.requires.packages ++ rust.requires.packages;
         }).requires.env.PATH;
       };
       oneshots = [
@@ -179,6 +180,11 @@ let
   };
 
   flycheck = (import ./flycheck.nix).compose {
+    requires = {};
+    provides = {};
+  };
+
+  rust = (pkgs.callPackage ./rust.nix { inherit (pkgs.rustPlatform) rustcSrc; }).compose {
     requires = {};
     provides = {};
   };
