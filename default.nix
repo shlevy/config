@@ -218,7 +218,7 @@ let
     requires = {};
     provides = {};
   };
-in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
+in ((pkgs.callPackage ./profile.nix {}).compose {
   requires = {};
   provides.name = "shlevy-home";
   provides.links = {
@@ -247,7 +247,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".config/direnv" = direnv.requires.links.".config/direnv";
     ".cache/lorri" = lorri.requires.links.".cache/lorri";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
-    Downloads = "run/Downloads";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
     ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
