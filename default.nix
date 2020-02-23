@@ -124,6 +124,7 @@ let
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         GDK_SCALE = "0.8";
         GDK_DPI_SCALE = "0.8";
+        "_JAVA_AWT_WM_NONREPARENTING" = "1";
         PATH = ((import ./path-programs.nix).compose {
           requires = {};
           provides.packages = [
@@ -136,7 +137,7 @@ let
             lorri.requires.package direnv.requires.package slack.requires.package
             vlc.requires.package pkgs.pavucontrol gimp.requires.package
             spotify.requires.package pkgs.clang cask.requires.package
-            pkgs.rustc pkgs.cargo pkgs.rustfmt
+            pkgs.android-studio
           ] ++ haskell.requires.packages ++ rust.requires.packages;
         }).requires.env.PATH;
       };

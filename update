@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+declare -r profile=/nix/var/nix/profiles/per-user/shlevy/home
+
+nix-env --set --profile "$profile" --file default.nix
+"$profile"/bin/homectl "$(readlink --canonicalize "$profile")" "$HOME" "$HOME/.local/share/homectl"
