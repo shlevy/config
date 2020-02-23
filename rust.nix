@@ -1,4 +1,4 @@
-{ cargo, rustc, rustfmt, rustracer, rustcSrc }:
+{ cargo, rustc, rustfmt, rustracer, rustcSrc, binutils-unwrapped }:
 {
   compose = { requires, provides }: {
     requires.emacs-packages = epkgs: [
@@ -18,6 +18,7 @@
       (add-hook 'rust-mode-hook 'cargo-minor-mode)
       (setq rust-format-on-save t)
     '';
-    requires.packages = [ cargo rustc rustfmt rustracer ];
+    requires.packages = [ cargo rustc rustfmt rustracer binutils-unwrapped ];
+    requires.links.".cargo" = "/home-persistent/shlevy/xdg/config/cargo";
   };
 }

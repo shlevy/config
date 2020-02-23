@@ -259,5 +259,6 @@ in ((pkgs.callPackage ./symlink-tree.nix {}).compose {
     ".cache/mesa_shader_cache" = spotify.requires.links.".cache/mesa_shader_cache";
     ".bashrc" = bashrc.requires.links.".bashrc";
     ".cabal" = haskell.requires.links.".cabal";
+    ".cargo" = rust.requires.links.".cargo";
   };
 }).provides.run
