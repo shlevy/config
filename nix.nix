@@ -20,7 +20,7 @@
   extra-builtins = make-extra-builtins { fetchers = all-fetchers; };
 
   config = writeText "nix.conf" ''
-    plugin-files = ${nix-plugins}/lib/nix/plugins
+    plugin-files = ${nix-plugins.override { inherit nix; }}/lib/nix/plugins
     extra-builtins-file = ${extra-builtins}/extra-builtins.nix
   '';
 in {

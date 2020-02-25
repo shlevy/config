@@ -129,7 +129,7 @@ let
           requires = {};
           provides.packages = [
             emacs.requires.package pkgs.firefox pkgs.pass
-            pkgs.gnupg pkgs.isync pkgs.msmtp
+            (pkgs.gnupg.override { guiSupport = true; }) pkgs.isync pkgs.msmtp
             git.requires.package notmuch.requires.package
             desktop-tools.move-mail desktop-tools.mail-loop
             pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
@@ -231,8 +231,6 @@ in ((pkgs.callPackage ./profile.nix {}).compose {
     ".emacs" = emacs.requires.links.".emacs";
     ".emacs.d" = emacs.requires.links.".emacs.d";
     ".mozilla" = "/home-persistent/shlevy/xdg/config/mozilla";
-    ".xsession-errors" = "run/xsession-errors";
-    ".Xauthority" = "run/Xauthority";
     ".cache/mozilla" = "/home-persistent/shlevy/xdg/cache/mozilla";
     ".gitconfig" = git.requires.links.".gitconfig";
     run = "/run/user/1000";
