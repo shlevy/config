@@ -122,8 +122,6 @@ let
         PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
-        GDK_SCALE = "0.8";
-        GDK_DPI_SCALE = "0.8";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
         PATH = ((import ./path-programs.nix).compose {
           requires = {};
@@ -144,7 +142,6 @@ let
       oneshots = [
         exwm.requires.oneshot
         "xrdb -merge $HOME/config/Xresources"
-        "xrandr --output eDP1 --fbmm 292x165"
       ];
       # TODO switch to i3
       wmcmd = exwm.requires.wmcmd;
