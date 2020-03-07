@@ -135,7 +135,7 @@ let
             lorri.requires.package direnv.requires.package slack.requires.package
             vlc.requires.package pkgs.pavucontrol gimp.requires.package
             spotify.requires.package pkgs.clang cask.requires.package
-            pkgs.android-studio
+            pkgs.android-studio pkgs.yubikey-manager-qt
           ] ++ haskell.requires.packages ++ rust.requires.packages;
         }).requires.env.PATH;
       };
