@@ -14,6 +14,9 @@
             "xrandr" nil "xrandr --output eDP-1 --primary --auto --output HDMI-2 --right-of eDP-1 --auto")))
       (exwm-randr-enable)
       (exwm-config-default)
+
+      (display-time-mode)
+      (display-battery-mode)
     '';
 
     # TODO namespacing?
