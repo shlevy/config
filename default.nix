@@ -122,7 +122,7 @@ let
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
-        PATH = ((import ./path-programs.nix).compose {
+        PATH = ((pkgs.callPackage ./path-programs.nix {}).compose {
           requires = {};
           provides.packages = [
             emacs.requires.package pkgs.firefox pkgs.pass
