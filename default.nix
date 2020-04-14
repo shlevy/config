@@ -114,6 +114,23 @@ let
     ];
   };
 
+  env = (pkgs.callPackage ./env.nix {}).compose {
+    requires = {};
+    provides.packages = [
+      emacs.requires.package pkgs.firefox pkgs.pass
+      (pkgs.gnupg.override { guiSupport = true; }) pkgs.isync pkgs.msmtp
+      git.requires.package notmuch.requires.package
+      desktop-tools.move-mail desktop-tools.mail-loop
+      pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
+      coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
+      lorri.requires.package direnv.requires.package slack.requires.package
+      vlc.requires.package pkgs.pavucontrol gimp.requires.package
+      spotify.requires.package pkgs.clang cask.requires.package
+      pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
+      pkgs.libreoffice pkgs.zoom-us pkgs.discord
+    ] ++ haskell.requires.packages ++ rust.requires.packages;
+  };
+
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
     requires = {};
     provides = {
@@ -122,22 +139,6 @@ let
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
-        PATH = ((pkgs.callPackage ./path-programs.nix {}).compose {
-          requires = {};
-          provides.packages = [
-            emacs.requires.package pkgs.firefox pkgs.pass
-            (pkgs.gnupg.override { guiSupport = true; }) pkgs.isync pkgs.msmtp
-            git.requires.package notmuch.requires.package
-            desktop-tools.move-mail desktop-tools.mail-loop
-            pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
-            coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
-            lorri.requires.package direnv.requires.package slack.requires.package
-            vlc.requires.package pkgs.pavucontrol gimp.requires.package
-            spotify.requires.package pkgs.clang cask.requires.package
-            pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
-            pkgs.libreoffice pkgs.zoom-us pkgs.discord
-          ] ++ haskell.requires.packages ++ rust.requires.packages;
-        }).requires.env.PATH;
       };
       oneshots = [
         exwm.requires.oneshot
@@ -219,6 +220,7 @@ let
 in ((pkgs.callPackage ./profile.nix {}).compose {
   requires = {};
   provides.name = "shlevy-home";
+  provides.env = env.requires.env;
   provides.links = {
     creds = "/home-persistent/shlevy/creds";
     ".xsession" = xsession;

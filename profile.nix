@@ -18,6 +18,8 @@
       ln --symbolic --force --no-target-directory "$state/active/v1/links/$real_link" "$home/$real_link"
     done
 
+    ln --symbolic --force --no-target-directory "$state/active/v1/env" "$home/env"
+
     ln --symbolic --force --no-target-directory "$target" "$state/active"
   '';
 in {
@@ -37,6 +39,7 @@ in {
     mv $manifestPath $out/v1/manifest
     mkdir -p $out/bin
     ln -sv ${homectl}/bin/homectl $out/bin/homectl
+    ln -sv ${provides.env} $out/v1/env
     '' + (builtins.concatStringsSep "\n" snippets));
   };
 }
