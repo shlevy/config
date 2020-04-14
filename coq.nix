@@ -1,7 +1,7 @@
 { coq }:
 {
   compose = { provides, requires }: {
-    requires.emacs-package = epkgs: epkgs.proof-general;
+    requires.emacs-packages = epkgs: [ epkgs.proof-general epkgs.agda-input ];
 
     requires.package = coq;
   };

@@ -90,12 +90,11 @@ let
       (fci.requires.emacs-package epkgs)
       (ledger.requires.emacs-package epkgs)
       (org.requires.emacs-package epkgs)
-      (coq.requires.emacs-package epkgs)
       (direnv.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
-    ] ++ (haskell.requires.emacs-packages epkgs) ++ (rust.requires.emacs-packages epkgs) ++ (flycheck.requires.emacs-packages epkgs);
+    ] ++ (haskell.requires.emacs-packages epkgs) ++ (rust.requires.emacs-packages epkgs) ++ (flycheck.requires.emacs-packages epkgs) ++ (coq.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
