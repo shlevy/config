@@ -127,7 +127,8 @@ let
       vlc.requires.package pkgs.pavucontrol gimp.requires.package
       spotify.requires.package pkgs.clang cask.requires.package
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
-      pkgs.libreoffice pkgs.zoom-us pkgs.discord
+      pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
+      pkgs.stdmanpages
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
