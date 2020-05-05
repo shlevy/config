@@ -73,7 +73,7 @@ let
     provides = {};
   };
 
-  coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_9; }).compose {
+  coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_11; }).compose {
     requires = {};
     provides = {};
   };
