@@ -111,6 +111,7 @@ let
       company.requires.emacs-config
       org-brain.requires.emacs-config
       org.requires.emacs-config
+      coq.requires.emacs-config
     ];
   };
 
