@@ -94,6 +94,7 @@ let
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
+      epkgs.graphviz-dot-mode
     ] ++ (haskell.requires.emacs-packages epkgs) ++ (rust.requires.emacs-packages epkgs) ++ (flycheck.requires.emacs-packages epkgs) ++ (coq.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
@@ -129,7 +130,7 @@ let
       spotify.requires.package pkgs.clang cask.requires.package
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
-      pkgs.stdmanpages
+      pkgs.stdmanpages pkgs.graphviz
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 

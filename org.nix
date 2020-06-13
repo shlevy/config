@@ -3,7 +3,7 @@
     requires.emacs-package = epkgs: epkgs.org-plus-contrib;
 
     requires.emacs-config = ''
-      (setq org-agenda-files '("~/documents/intentions"))
+      (setq org-agenda-files '("~/documents/intentions" "~/documents/todo.org"))
       (setq org-todo-keywords
         '((sequence "BACKLOG(b@)" "TODO(t!)" "IN PROGRESS(p)" "|" "DONE(d!)")))
       (setq org-enforce-todo-dependencies t)
