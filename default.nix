@@ -4,6 +4,8 @@ let
   pkgs = import <nixpkgs> {
     config.allowUnfree = true;
   };
+  hugo = builtins.trace "hugo uses different nixpkgs"
+  (import /home/shlevy/src/nixpkgs/master {}).hugo;
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
   exwm = (pkgs.callPackage ./exwm.nix {}).compose {
@@ -130,7 +132,7 @@ let
       spotify.requires.package pkgs.clang cask.requires.package
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
-      pkgs.stdmanpages pkgs.graphviz
+      pkgs.stdmanpages pkgs.graphviz hugo
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
