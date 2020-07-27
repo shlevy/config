@@ -4,6 +4,8 @@
     requires.emacs-package = epkgs: epkgs.exwm;
 
     requires.emacs-config = ''
+      (setq ediff-window-setup-function 'ediff-setup-windows-plain) ; default ediff mode conflicts with exwm
+
       (require 'exwm)
       (require 'exwm-config)
       (require 'exwm-randr)
