@@ -144,13 +144,10 @@ let
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
-        GDK_SCALE = "0.8";
-        GDK_DPI_SCALE = "0.8";
       };
       oneshots = [
         exwm.requires.oneshot
         "xrdb -merge $HOME/config/Xresources"
-        "xrandr --output eDP-1 --fbmm 292x165"
       ];
       # TODO switch to i3
       wmcmd = exwm.requires.wmcmd;
