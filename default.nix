@@ -132,7 +132,7 @@ let
       spotify.requires.package pkgs.clang cask.requires.package
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
-      pkgs.stdmanpages pkgs.graphviz hugo pkgs.calibre
+      pkgs.stdmanpages pkgs.graphviz hugo pkgs.calibre pkgs.ledger-live-desktop
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
