@@ -133,6 +133,7 @@ let
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz hugo pkgs.calibre pkgs.ledger-live-desktop
+      pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
@@ -144,6 +145,7 @@ let
         HISTFILE = "/home-persistent/shlevy/bash_history";
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
+        EDITOR = "emacsclient";
       };
       oneshots = [
         exwm.requires.oneshot
