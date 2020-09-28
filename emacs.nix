@@ -16,7 +16,8 @@ in {
          delete-old-versions t
          kept-new-versions 6
          kept-old-versions 2
-         version-control t)
+         version-control t
+         auth-source-save-behavior nil)
     '');
     requires.links.".emacs.d" = "/home-persistent/shlevy/xdg/config/emacs";
   };
