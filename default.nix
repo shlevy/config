@@ -6,6 +6,12 @@ let
   };
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
+  zulip = pkgs.zulip.override {
+    appimageTools = pkgs.appimageTools.override {
+      buildFHSUserEnv = pkgs.buildFHSUserEnv;
+    };
+  };
+
   exwm = (pkgs.callPackage ./exwm.nix {}).compose {
     requires = {};
     provides = {};
@@ -132,7 +138,7 @@ let
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
-      pkgs.inkscape
+      pkgs.inkscape zulip
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
