@@ -132,7 +132,7 @@ let
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
-      pkgs.inkscape pkgs.zulip
+      pkgs.inkscape pkgs.zulip pkgs.keybase-gui
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
