@@ -78,6 +78,11 @@ let
     provides = {};
   };
 
+  agda = (pkgs.callPackage ./agda.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   emacs = (pkgs.callPackage ./emacs.nix {}).compose {
     requires = {};
     provides.emacs-packages = epkgs: [
@@ -94,6 +99,7 @@ let
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
+      (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode
     ] ++ (haskell.requires.emacs-packages epkgs) ++ (rust.requires.emacs-packages epkgs) ++ (flycheck.requires.emacs-packages epkgs) ++ (coq.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
@@ -112,6 +118,7 @@ let
       company.requires.emacs-config
       org-brain.requires.emacs-config
       org.requires.emacs-config
+      agda.requires.emacs-config
       coq.requires.emacs-config
     ];
   };
@@ -132,7 +139,7 @@ let
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
-      pkgs.inkscape pkgs.zulip pkgs.keybase-gui
+      pkgs.inkscape pkgs.zulip pkgs.keybase-gui agda.requires.package
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 
