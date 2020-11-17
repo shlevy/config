@@ -3,6 +3,33 @@ let
   # TODO pin/flakify external deps
   pkgs = import <nixpkgs> {
     config.allowUnfree = true;
+    # TODO Move this into agda.nix and make overlays available, or abandon this
+    overlays = [
+      (self: super: {
+        haskellPackages = super.haskellPackages.override {
+          overrides = helf: huper: {
+            Agda =
+              self.haskell.lib.overrideCabal
+                (helf.callCabal2nixWithOptions "Agda" (self.fetchFromGitHub {
+                  owner = "agda";
+                  repo = "agda";
+                  rev = "0ae800b2bade5416df506eb61c35c2310658f4d5";
+                  sha256 = "0ick6vycvlr8dajgnykpvi7x5aszvfv1bh45sprxphnd5zsi89h4";
+                }) "--flag enable-cluster-counting" {})
+                (_: {
+                  # installcheck
+                  # BUILD_DIR=$(TOP)/dist
+                  # FIXW_BIN=${fix-whitespace}/bin/fix-whitespace
+                  # make bugs first
+                  # Add installed agda to pkgdb for tests
+                  # xelatex error
+                  doCheck = false;
+                  postInstall = "$out/bin/agda-mode compile";
+                });
+          };
+        };
+      })
+    ];
   };
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
