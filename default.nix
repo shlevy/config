@@ -13,8 +13,8 @@ let
                 (helf.callCabal2nixWithOptions "Agda" (self.fetchFromGitHub {
                   owner = "agda";
                   repo = "agda";
-                  rev = "0ae800b2bade5416df506eb61c35c2310658f4d5";
-                  sha256 = "0ick6vycvlr8dajgnykpvi7x5aszvfv1bh45sprxphnd5zsi89h4";
+                  rev = "5070bd8c145c4ada51266be9728f08749dc9fd3e";
+                  sha256 = "08034l517px5rvj6y303b0mr1illm0qlxvkfjk2wp6m91pdf2n78";
                 }) "--flag enable-cluster-counting" {})
                 (_: {
                   # installcheck
@@ -167,6 +167,7 @@ let
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
       pkgs.inkscape pkgs.zulip pkgs.keybase-gui agda.requires.package
+      pkgs.xfce.thunar
     ] ++ haskell.requires.packages ++ rust.requires.packages;
   };
 

@@ -15,8 +15,8 @@
           src = fetchFromGitHub {
             repo = "cubical";
             owner = "agda";
-            rev = "21cf7a1c292ea39dac1a0151b70088c36e7f9143";
-            sha256 = "0y4vilrijc3vihh2zxgp5kj06iv5hg69a6p4p7z7h9kp47sdd00d";
+            rev = "e2601d642074094f0a7183a54ba7cea411b024eb";
+            sha256 = "10q21rwjmqmwdcgwj24p2v2w25f6imywasr0f4bn6kzrs8ghq3c9";
           };
         });
       }))
