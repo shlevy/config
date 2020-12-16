@@ -100,6 +100,11 @@ let
     provides = {};
   };
 
+  org-roam = (pkgs.callPackage ./org-roam.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_11; }).compose {
     requires = {};
     provides = {};
@@ -125,6 +130,7 @@ let
       (direnv.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
+      (org-roam.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode
@@ -144,6 +150,7 @@ let
       rust.requires.emacs-config
       company.requires.emacs-config
       org-brain.requires.emacs-config
+      org-roam.requires.emacs-config
       org.requires.emacs-config
       agda.requires.emacs-config
       coq.requires.emacs-config
@@ -168,7 +175,7 @@ let
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
       pkgs.inkscape pkgs.zulip pkgs.keybase-gui agda.requires.package
       pkgs.xfce.thunar
-    ] ++ haskell.requires.packages ++ rust.requires.packages;
+    ] ++ haskell.requires.packages ++ rust.requires.packages ++ org-roam.requires.packages;
   };
 
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
