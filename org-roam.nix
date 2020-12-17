@@ -16,6 +16,7 @@ in {
 
     requires.emacs-config = ''
       (customize-set-variable 'org-roam-directory "~/documents/org-roam")
+      (setq org-roam-db-update-method 'immediate) ; Temporary pending https://github.com/org-roam/org-roam/pull/1281 in release
       (require 'org-roam)
       (define-key org-roam-mode-map (kbd "C-c n l") 'org-roam)
       (define-key org-roam-mode-map (kbd "C-c n f") 'org-roam-find-file)
