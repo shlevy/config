@@ -5,6 +5,7 @@
     requires.emacs-config = ''
       (require 'flycheck)
       (require 'flycheck-inline)
+      (customize-set-variable 'flycheck-global-modes '(not org-mode))
       (global-flycheck-mode)
       (global-flycheck-inline-mode)
     '';
