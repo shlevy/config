@@ -78,18 +78,6 @@ let
     provides = {};
   };
 
-  org-drill = (pkgs.callPackage ./org-drill.nix {}).compose {
-    requires = {};
-    provides = {
-      org-drill-files = [
-        "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/1.org"
-        "/home/shlevy/documents/notes/Introduction to higher order categorical logic/0/2.org"
-        "/home/shlevy/documents/notes/mark/2019/02/06.org"
-        "/home/shlevy/documents/notes/mark/2019/02/20.org"
-      ];
-    };
-  };
-
   org-brain = (import ./org-brain.nix).compose {
     requires = {};
     provides = {};
@@ -101,6 +89,11 @@ let
   };
 
   org-roam = (pkgs.callPackage ./org-roam.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
+  org-fc = (pkgs.callPackage ./org-fc.nix {}).compose {
     requires = {};
     provides = {};
   };
@@ -143,7 +136,6 @@ let
       git.requires.emacs-config
       nix.requires.emacs-config
       fci.requires.emacs-config
-      org-drill.requires.emacs-config
       direnv.requires.emacs-config
       flycheck.requires.emacs-config
       haskell.requires.emacs-config
@@ -151,6 +143,7 @@ let
       company.requires.emacs-config
       org-brain.requires.emacs-config
       org-roam.requires.emacs-config
+      org-fc.requires.emacs-config
       org.requires.emacs-config
       agda.requires.emacs-config
       coq.requires.emacs-config
