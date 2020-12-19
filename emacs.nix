@@ -8,6 +8,7 @@ in {
   in {
     requires.package = emacs;
     requires.links.".emacs" = writeText "emacs" (provides.emacs-config + "\n" + ''
+      (global-visual-line-mode)
       (server-start)
       (setq
          backup-by-copying t
