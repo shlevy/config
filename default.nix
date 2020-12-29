@@ -93,6 +93,11 @@ let
     provides = {};
   };
 
+  org-transclusion = (pkgs.callPackage ./org-transclusion.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   org-fc = (pkgs.callPackage ./org-fc.nix {}).compose {
     requires = {};
     provides = {};
@@ -124,6 +129,7 @@ let
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
       (org-roam.requires.emacs-package epkgs)
+      (org-transclusion.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode
@@ -143,6 +149,7 @@ let
       company.requires.emacs-config
       org-brain.requires.emacs-config
       org-roam.requires.emacs-config
+      org-transclusion.requires.emacs-config
       org-fc.requires.emacs-config
       org.requires.emacs-config
       agda.requires.emacs-config
