@@ -5,7 +5,7 @@
 
     requires.bashrc = "eval \"$(direnv hook bash)\"";
 
-    requires.links.".config/direnv" = "/home-persistent/shlevy/xdg/config/direnv";
+    requires.links.".local/share/direnv" = "/home-persistent/shlevy/xdg/share/direnv";
 
     requires.emacs-package = epkgs: epkgs.direnv;
 

@@ -290,7 +290,7 @@ in ((pkgs.callPackage ./profile.nix {}).compose {
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".config/Signal" = "/home-persistent/shlevy/xdg/config/Signal";
-    ".config/direnv" = direnv.requires.links.".config/direnv";
+    ".local/share/direnv" = direnv.requires.links.".local/share/direnv";
     ".cache/lorri" = lorri.requires.links.".cache/lorri";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
