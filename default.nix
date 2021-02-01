@@ -295,7 +295,6 @@ in ((pkgs.callPackage ./profile.nix {}).compose {
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
-    ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
     ".config/Slack" = slack.requires.links.".config/Slack";
     ".config/vlc" = vlc.requires.links.".config/vlc";
     ".config/GIMP" = gimp.requires.links.".config/GIMP";
