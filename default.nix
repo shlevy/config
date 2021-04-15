@@ -31,6 +31,9 @@ let
       })
     ];
   };
+
+  gnupg = pkgs.gnupg.override { guiSupport = true; };
+
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
   exwm = (pkgs.callPackage ./exwm.nix {}).compose {
@@ -124,7 +127,6 @@ let
       (nix.requires.emacs-package epkgs)
       (fci.requires.emacs-package epkgs)
       (ledger.requires.emacs-package epkgs)
-      (org.requires.emacs-package epkgs)
       (direnv.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
       (org-brain.requires.emacs-package epkgs)
@@ -133,7 +135,11 @@ let
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode
-    ] ++ (haskell.requires.emacs-packages epkgs) ++ (rust.requires.emacs-packages epkgs) ++ (flycheck.requires.emacs-packages epkgs) ++ (coq.requires.emacs-packages epkgs);
+    ] ++ (haskell.requires.emacs-packages epkgs)
+      ++ (rust.requires.emacs-packages epkgs)
+      ++ (flycheck.requires.emacs-packages epkgs)
+      ++ (coq.requires.emacs-packages epkgs)
+      ++ (org.requires.emacs-packages epkgs);
     provides.emacs-config = builtins.concatStringsSep "\n" [
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
@@ -160,13 +166,13 @@ let
   env = (pkgs.callPackage ./env.nix {}).compose {
     requires = {};
     provides.packages = [
-      emacs.requires.package pkgs.firefox pkgs.pass
-      (pkgs.gnupg.override { guiSupport = true; }) pkgs.isync pkgs.msmtp
+      emacs.requires.package pkgs.firefox (pkgs.pass.override { inherit gnupg; })
+      gnupg pkgs.isync pkgs.msmtp
       git.requires.package notmuch.requires.package
       desktop-tools.move-mail desktop-tools.mail-loop
       pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
       coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
-      lorri.requires.package direnv.requires.package slack.requires.package
+      direnv.requires.package slack.requires.package
       vlc.requires.package pkgs.pavucontrol gimp.requires.package
       spotify.requires.package pkgs.clang cask.requires.package
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
@@ -205,11 +211,6 @@ let
   };
 
   pulseaudio = (import ./pulseaudio.nix).compose {
-    requires = {};
-    provides = {};
-  };
-
-  lorri = (pkgs.callPackage ./lorri.nix {}).compose {
     requires = {};
     provides = {};
   };
@@ -291,7 +292,6 @@ in ((pkgs.callPackage ./profile.nix {}).compose {
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".config/Signal" = "/home-persistent/shlevy/xdg/config/Signal";
     ".local/share/direnv" = direnv.requires.links.".local/share/direnv";
-    ".cache/lorri" = lorri.requires.links.".cache/lorri";
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";

@@ -1,6 +1,6 @@
 {
   compose = { provides, requires }: {
-    requires.emacs-package = epkgs: epkgs.org-plus-contrib;
+    requires.emacs-packages = epkgs: [ epkgs.org-plus-contrib epkgs.org-bullets ];
 
     requires.emacs-config = ''
       (setq org-agenda-files '("~/documents/org-roam/agenda.org" "~/documents/intentions" "~/documents/todo.org" "~/documents/domains" "~/documents/watermarks"))
@@ -11,6 +11,9 @@
       (define-key global-map "\C-cl" 'org-store-link)
       (define-key global-map "\C-ca" 'org-agenda)
       (setq org-agenda-custom-commands '(("n" "Agenda and active TODOs" ((agenda "") (todo "TODO|IN PROGRESS")))))
+
+      (require 'org-bullets)
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
     '';
   };
 }
