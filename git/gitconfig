@@ -10,3 +10,5 @@
     smtpencryption = tls
     smtpserver = mail.hover.com
     smtpuser = shea@shealevy.com
+[init]
+    defaultBranch = master
