@@ -134,7 +134,7 @@ let
       (org-transclusion.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
-      epkgs.graphviz-dot-mode
+      epkgs.graphviz-dot-mode epkgs.bnfc epkgs.typescript-mode
     ] ++ (haskell.requires.emacs-packages epkgs)
       ++ (rust.requires.emacs-packages epkgs)
       ++ (flycheck.requires.emacs-packages epkgs)
@@ -167,7 +167,7 @@ let
     requires = {};
     provides.packages = [
       emacs.requires.package pkgs.firefox (pkgs.pass.override { inherit gnupg; })
-      gnupg pkgs.isync pkgs.msmtp
+      gnupg pkgs.isync pkgs.msmtp pkgs.haskellPackages.BNFC pkgs.bison pkgs.flex pkgs.binutils
       git.requires.package notmuch.requires.package
       desktop-tools.move-mail desktop-tools.mail-loop
       pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
@@ -193,6 +193,7 @@ let
         GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
         EDITOR = "emacsclient";
+        LIBCLANG_PATH = "${pkgs.llvmPackages.libclang}/lib";
       };
       oneshots = [
         exwm.requires.oneshot
