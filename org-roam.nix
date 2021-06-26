@@ -1,37 +1,32 @@
 { fetchFromGitHub, sqlite, graphviz }: let
-  version = "1.2.3";
   src = fetchFromGitHub {
     owner = "org-roam";
     repo = "org-roam";
-    rev = "v${version}";
-    sha256 = "0n8c0yxqb62i39kn0d5x83s96vwc0nbg0sx5hplffnbkfbj88bba";
+    rev = "55008e3707c4960afbc6e2c0fcd6e72a1e60fc0a"; #v2 branch
+    sha256 = "0kvh6fy73m7bcp2jgyvkkfbwzdr82416f1m688h5g831b0shhr8j";
   };
 in {
   compose = { provides, requires }: {
-    requires.emacs-package = epkgs: epkgs.org-roam.override (orig: {
-      melpaBuild = args: orig.melpaBuild (args // {
-        inherit src version;
-      });
-    });
+    requires.emacs-package = epkgs: epkgs.melpaBuild {
+      pname = "org-roam";
+      version = "2.0.0";
+      recipe = builtins.toFile "org-roam-recipe" ''
+        (org-roam :fetcher github
+          :repo "org-roam/org-roam"
+          :branch "v2")
+      '';
+      inherit src;
+      packageRequires = [ epkgs.dash epkgs.f epkgs.org epkgs.emacsql epkgs.emacsql-sqlite epkgs.magit-section ];
+    };
 
     requires.emacs-config = ''
       (customize-set-variable 'org-roam-directory "~/documents/org-roam")
-      (setq org-roam-db-update-method 'immediate) ; Temporary pending https://github.com/org-roam/org-roam/pull/1281 in release
       (require 'org-roam)
-      (define-key org-roam-mode-map (kbd "C-c n l") 'org-roam)
-      (define-key org-roam-mode-map (kbd "C-c n f") 'org-roam-find-file)
-      (define-key org-roam-mode-map (kbd "C-c n g") 'org-roam-graph)
-      (define-key org-mode-map (kbd "C-c n i") 'org-roam-insert)
-      (define-key org-mode-map (kbd "C-c n I") 'org-roam-insert-immediate)
-      (setq org-roam-dailies-directory "daily/")
+      (define-key org-roam-mode-map (kbd "C-c n l") 'org-roam-buffer-toggle)
+      (define-key org-roam-mode-map (kbd "C-c n f") 'org-roam-node-find)
+      (define-key org-mode-map (kbd "C-c n i") 'org-roam-node-insert)
 
-      (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry
-           #'org-roam-capture--get-point
-           "* %?"
-           :file-name "daily/%<%Y-%m-%d>"
-           :head "#+title: %<%Y-%m-%d>\n\n")))
-      (org-roam-mode)
+      (org-roam-setup)
     '';
 
     requires.packages = [ sqlite graphviz ];
