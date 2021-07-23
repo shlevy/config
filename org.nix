@@ -3,7 +3,7 @@
     requires.emacs-packages = epkgs: [ epkgs.org-plus-contrib epkgs.org-bullets ];
 
     requires.emacs-config = ''
-      (setq org-agenda-files '("~/documents/org-roam/agenda.org" "~/documents/intentions" "~/documents/todo.org" "~/documents/domains" "~/documents/watermarks"))
+      (setq org-agenda-files '("~/documents/org-roam-old/agenda.org" "~/documents/intentions" "~/documents/todo.org" "~/documents/domains" "~/documents/watermarks"))
       (setq org-todo-keywords
         '((sequence "BACKLOG(b@)" "TODO(t!)" "IN PROGRESS(p)" "|" "DONE(d!)")))
       (setq org-enforce-todo-dependencies t)
