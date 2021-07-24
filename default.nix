@@ -3,33 +3,6 @@ let
   # TODO pin/flakify external deps
   pkgs = import <nixpkgs> {
     config.allowUnfree = true;
-    # TODO Move this into agda.nix and make overlays available, or abandon this
-    overlays = [
-      (self: super: {
-        haskellPackages = super.haskellPackages.override {
-          overrides = helf: huper: {
-            Agda =
-              self.haskell.lib.overrideCabal
-                (helf.callCabal2nixWithOptions "Agda" (self.fetchFromGitHub {
-                  owner = "agda";
-                  repo = "agda";
-                  rev = "5070bd8c145c4ada51266be9728f08749dc9fd3e";
-                  sha256 = "08034l517px5rvj6y303b0mr1illm0qlxvkfjk2wp6m91pdf2n78";
-                }) "--flag enable-cluster-counting" {})
-                (_: {
-                  # installcheck
-                  # BUILD_DIR=$(TOP)/dist
-                  # FIXW_BIN=${fix-whitespace}/bin/fix-whitespace
-                  # make bugs first
-                  # Add installed agda to pkgdb for tests
-                  # xelatex error
-                  doCheck = false;
-                  postInstall = "$out/bin/agda-mode compile";
-                });
-          };
-        };
-      })
-    ];
   };
 
   gnupg = pkgs.gnupg.override { guiSupport = true; };
@@ -177,7 +150,7 @@ let
       spotify.requires.package pkgs.clang cask.requires.package
       pkgs.android-studio pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
-      pkgs.stdmanpages pkgs.graphviz pkgs.hugo pkgs.calibre
+      pkgs.stdmanpages pkgs.graphviz pkgs.hugo # pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
       pkgs.inkscape pkgs.zulip pkgs.keybase-gui agda.requires.package
       pkgs.xfce.thunar pkgs.unzip

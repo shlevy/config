@@ -11,6 +11,7 @@ in {
       (global-visual-line-mode)
       (server-start)
       (setq
+         message-forward-as-mime t
          backup-by-copying t
          backup-directory-alist
           '(("." . "/home-persistent/shlevy/xdg/cache/emacs/saves")) ; TODO find a nicer way to specify this
