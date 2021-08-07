@@ -6,6 +6,7 @@
     requires.emacs-config = "(require 'agda2)";
 
     requires.package = agdaPackages.agda.withPackages [
+      agdaPackages.standard-library
       agdaPackages.cubical
     ];
   };
