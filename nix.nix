@@ -1,4 +1,4 @@
-{ nix, fetchFromGitHub, callPackage, writeText, nix-plugins }: let
+{ nixFlakes, fetchFromGitHub, callPackage, writeText, nix-plugins }: let
   nix-mode-src = fetchFromGitHub {
     owner = "NixOS";
     repo = "nix-mode";
@@ -19,6 +19,6 @@ in {
 
     requires.emacs-config = "(setq nix-indent-function 'nix-indent-line)";
 
-    requires.package = nix;
+    requires.package = nixFlakes;
   };
 }
