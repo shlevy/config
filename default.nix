@@ -107,7 +107,7 @@ let
       (org-transclusion.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
-      epkgs.graphviz-dot-mode epkgs.bnfc epkgs.typescript-mode
+      epkgs.graphviz-dot-mode epkgs.bnfc epkgs.purescript-mode
     ] ++ (haskell.requires.emacs-packages epkgs)
       ++ (rust.requires.emacs-packages epkgs)
       ++ (flycheck.requires.emacs-packages epkgs)
@@ -152,7 +152,7 @@ let
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo # pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
-      pkgs.inkscape pkgs.zulip pkgs.keybase-gui agda.requires.package
+      pkgs.inkscape pkgs.zulip agda.requires.package
       pkgs.xfce.thunar pkgs.unzip pkgs.jq pkgs.evince
     ] ++ haskell.requires.packages ++ rust.requires.packages ++ org-roam.requires.packages;
   };
