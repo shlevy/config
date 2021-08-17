@@ -74,6 +74,11 @@ let
     provides = {};
   };
 
+  cue-mode = (pkgs.callPackage ./cue-mode.nix {}).compose {
+    requires = {};
+    provides = {};
+  };
+
   org-fc = (pkgs.callPackage ./org-fc.nix {}).compose {
     requires = {};
     provides = {};
@@ -105,6 +110,7 @@ let
       (org-brain.requires.emacs-package epkgs)
       (org-roam.requires.emacs-package epkgs)
       (org-transclusion.requires.emacs-package epkgs)
+      (cue-mode.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode epkgs.bnfc epkgs.purescript-mode
