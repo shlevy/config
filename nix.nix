@@ -13,6 +13,10 @@ in {
 
     requires.links.".cache/nix-fetchers" = "/home-persistent/shlevy/xdg/cache/nix-fetchers";
 
+    requires.links.".config/nix/nix.conf" = builtins.toFile "nix.conf" ''
+      experimental-features = nix-command flakes
+    '';
+
     requires.emacs-package = epkgs: epkgs.nix-mode.overrideAttrs (_: {
       src = nix-mode-src;
     });

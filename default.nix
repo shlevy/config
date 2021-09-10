@@ -268,6 +268,7 @@ in ((pkgs.callPackage ./profile.nix {}).compose {
     ".local/share/nix" = nix.requires.links.".local/share/nix";
     ".cache/nix" = nix.requires.links.".cache/nix";
     ".cache/nix-fetchers" = nix.requires.links.".cache/nix-fetchers";
+    ".config/nix/nix.conf" = nix.requires.links.".config/nix/nix.conf";
     ".msmtp.log" = "run/msmtp.log";
     ".config/Wire" = "/home-persistent/shlevy/xdg/config/Wire";
     ".config/Signal" = "/home-persistent/shlevy/xdg/config/Signal";

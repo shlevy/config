@@ -1,7 +1,7 @@
 { notmuch }:
 {
   compose = { provides, requires }: {
-    requires.emacs-package = epkgs: epkgs.notmuch;
+    requires.emacs-package = _: notmuch.emacs;
 
     requires.package = notmuch;
 
