@@ -159,7 +159,7 @@ let
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo # pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
       pkgs.inkscape pkgs.zulip agda.requires.package
-      pkgs.xfce.thunar pkgs.unzip pkgs.jq pkgs.evince
+      pkgs.xfce.thunar pkgs.unzip pkgs.jq pkgs.evince pkgs.webcamoid
     ] ++ haskell.requires.packages ++ rust.requires.packages ++ org-roam.requires.packages;
   };
 
