@@ -10,7 +10,7 @@
       (setq org-log-into-drawer t)
       (define-key global-map "\C-cl" 'org-store-link)
       (define-key global-map "\C-ca" 'org-agenda)
-      (setq org-agenda-custom-commands '(("n" "Agenda and active TODOs" ((agenda "") (todo "TODO|IN PROGRESS" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline)))))))
+      (setq org-agenda-custom-commands '(("n" "Agenda and active TODOs" ((agenda "") (todo "TODO|IN PROGRESS" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))))))
 
       (require 'org-bullets)
       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
