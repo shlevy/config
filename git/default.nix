@@ -1,8 +1,8 @@
-{ git }:
+{ git, git-lfs }:
 {
   compose = { requires, provides}: {
     requires = {
-      package = git;
+      packages = [ git git-lfs ];
 
       emacs-package = epkgs: epkgs.magit;
 

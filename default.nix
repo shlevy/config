@@ -147,8 +147,7 @@ let
     provides.packages = [
       emacs.requires.package pkgs.firefox (pkgs.pass.override { inherit gnupg; })
       gnupg pkgs.isync pkgs.msmtp pkgs.haskellPackages.BNFC pkgs.bison pkgs.flex pkgs.binutils
-      git.requires.package notmuch.requires.package
-      desktop-tools.move-mail desktop-tools.mail-loop
+      notmuch.requires.package desktop-tools.move-mail desktop-tools.mail-loop
       pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
       coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
       direnv.requires.package slack.requires.package
@@ -160,7 +159,8 @@ let
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted
       pkgs.inkscape pkgs.zulip agda.requires.package
       pkgs.xfce.thunar pkgs.unzip pkgs.jq pkgs.evince pkgs.webcamoid
-    ] ++ haskell.requires.packages ++ rust.requires.packages ++ org-roam.requires.packages;
+    ] ++ haskell.requires.packages ++ rust.requires.packages ++ org-roam.requires.packages
+      ++ git.requires.packages;
   };
 
   xsession = ((pkgs.callPackage ./xsession.nix {}).compose {
@@ -276,7 +276,6 @@ in ((pkgs.callPackage ./profile.nix {}).compose {
     ".ssh" = "/home-persistent/shlevy/creds/ssh";
     ".config/systemd/user" = systemd-user.requires.links.".config/systemd/user";
     ".config/pulse" = pulseaudio.requires.links.".config/pulse";
-    ".config/Slack" = slack.requires.links.".config/Slack";
     ".config/vlc" = vlc.requires.links.".config/vlc";
     ".config/GIMP" = gimp.requires.links.".config/GIMP";
     ".config/spotify" = spotify.requires.links.".config/spotify";

@@ -12,3 +12,8 @@
     smtpuser = shea@shealevy.com
 [init]
     defaultBranch = master
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lifs smudge -- %f
