@@ -5,8 +5,8 @@
       epkgs.haskell-mode epkgs.company-ghci epkgs.flycheck-haskell
     ];
     requires.emacs-config = ''
-      (eval-after-load 'flycheck
-        '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+      ;; (eval-after-load 'flycheck
+      ;;   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
       (require 'haskell-interactive-mode)
       (require 'haskell-process)
       (add-hook 'haskell-mode-hook 'interactive-haskell-mode)

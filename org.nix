@@ -1,7 +1,6 @@
 let
   org-agenda-files = [
     "~/documents/org-roam/20220112053843-conscient_relationships_winter_2022.org"
-    "~/documents/org-roam/20220107055932-alyssa_birthday_2022.org"
     "~/documents/org-roam/20220107060247-year_1_objectivism_seminar_q2_work.org"
     "~/documents/org-roam/20211230102142-plutus_continuous_integration.org"
     "~/documents/org-roam/20220110055111-winter_2022_season_preparation.org"
@@ -13,7 +12,6 @@ let
     "~/documents/org-roam/20220107055558-oac_q1_wrap.org"
     "~/documents/org-roam/20210914171054-ocon_2022.org"
     "~/documents/org-roam-old/agenda.org"
-    "~/documents/org-roam/20211023100931-concrete_guidance.org"
   ];
 in rec {
   agenda-line = "(setq org-agenda-files '(${builtins.concatStringsSep " " (map (f: "\"${f}\"") org-agenda-files)}))";
