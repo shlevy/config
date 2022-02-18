@@ -152,7 +152,7 @@ let
       coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
       direnv.requires.package slack.requires.package
       vlc.requires.package pkgs.pavucontrol gimp.requires.package
-      spotify.requires.package pkgs.clang cask.requires.package
+      spotify.requires.package cask.requires.package
       pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo # pkgs.calibre

@@ -1,5 +1,6 @@
 let
   org-agenda-files = [
+    "~/documents/org-roam/20220217071101-spring_2022_season_preparation.org"
     "~/documents/org-roam/20220217063909-plutus_certification_mvp.org"
     "~/documents/org-roam/agenda.org"
     "~/documents/org-roam-old/agenda.org"
