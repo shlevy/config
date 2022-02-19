@@ -114,6 +114,7 @@ let
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode epkgs.bnfc epkgs.purescript-mode
+      epkgs.go-mode
     ] ++ (haskell.requires.emacs-packages epkgs)
       ++ (rust.requires.emacs-packages epkgs)
       ++ (flycheck.requires.emacs-packages epkgs)
