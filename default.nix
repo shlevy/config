@@ -154,7 +154,7 @@ let
       direnv.requires.package slack.requires.package
       vlc.requires.package pkgs.pavucontrol gimp.requires.package
       spotify.requires.package cask.requires.package
-      pkgs.yubikey-manager-qt pkgs.kvm pkgs.qemu
+      pkgs.yubikey-manager-qt pkgs.qemu_kvm pkgs.poppler_utils
       pkgs.libreoffice pkgs.zoom-us pkgs.discord pkgs.man-pages pkgs.posix_man_pages
       pkgs.stdmanpages pkgs.graphviz pkgs.hugo # pkgs.calibre
       pkgs.lm_sensors pkgs.dmidecode pkgs.pciutils pkgs.usbutils pkgs.parted

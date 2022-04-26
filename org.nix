@@ -1,6 +1,7 @@
 let
   org-agenda-files = [
     "~/documents/org-roam/20220317095220-conscient_task_clarification_2022_03_16_2022_03_17.org"
+    "~/documents/org-roam/20220404053518-proof_of_marlowe.org"
     "~/documents/org-roam/20220319110207-arsps_concepts_wrap_up.org"
     "~/documents/org-roam/20220331064637-year_1_objectivism_seminar_q3_work.org"
     "~/documents/org-roam/20220309061101-19th_century_philosophy_of_science.org"
