@@ -5,7 +5,7 @@
 [commit]
     gpgSign = true
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 [sendmail]
     smtpencryption = tls
     smtpserver = mail.hover.com
@@ -17,3 +17,5 @@
     required = true
     clean = git-lfs clean -- %f
     smudge = git-lifs smudge -- %f
+[rerere]
+    enabled = true

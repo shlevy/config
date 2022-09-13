@@ -20,6 +20,8 @@ in {
          kept-old-versions 2
          version-control t
          auth-source-save-behavior nil)
+         (add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))
     '');
     requires.links.".emacs.d" = "/home-persistent/shlevy/xdg/config/emacs";
   };

@@ -7,8 +7,9 @@
         "export ${name}=${provides.env.${name}}"
       ) (builtins.attrNames provides.env);
     in "${writeShellScriptBin "xsession" ''
-      export PATH="$HOME/env/bin:$PATH"
+      export PATH="$HOME/env/bin:$HOME/opt/bin:$PATH"
       export MANPATH="$HOME/env/share/man:"
+      export LD_LIBRARY_PATH=''${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$HOME/env/lib
       ${builtins.concatStringsSep "\n" env-snippets}
       ${builtins.concatStringsSep "\n" provides.oneshots}
       exec ${provides.wmcmd}

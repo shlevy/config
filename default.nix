@@ -29,11 +29,6 @@ let
     provides = {};
   };
 
-  znc = (import ./znc.nix).compose {
-    requires = {};
-    provides = {};
-  };
-
   git = (pkgs.callPackage ./git {}).compose {
     requires = {};
     provides = {};
@@ -50,11 +45,6 @@ let
   };
 
   org = (import ./org.nix).compose {
-    requires = {};
-    provides = {};
-  };
-
-  org-brain = (import ./org-brain.nix).compose {
     requires = {};
     provides = {};
   };
@@ -79,11 +69,6 @@ let
     provides = {};
   };
 
-  org-fc = (pkgs.callPackage ./org-fc.nix {}).compose {
-    requires = {};
-    provides = {};
-  };
-
   coq = (pkgs.callPackage ./coq.nix { coq = pkgs.coq_8_11; }).compose {
     requires = {};
     provides = {};
@@ -100,21 +85,19 @@ let
       (exwm.requires.emacs-package epkgs)
       (notmuch.requires.emacs-package epkgs)
       (cask.requires.emacs-package epkgs)
-      (znc.requires.emacs-package epkgs)
       (git.requires.emacs-package epkgs)
       (nix.requires.emacs-package epkgs)
       (fci.requires.emacs-package epkgs)
       (ledger.requires.emacs-package epkgs)
       (direnv.requires.emacs-package epkgs)
       (company.requires.emacs-package epkgs)
-      (org-brain.requires.emacs-package epkgs)
       (org-roam.requires.emacs-package epkgs)
       (org-transclusion.requires.emacs-package epkgs)
       (cue-mode.requires.emacs-package epkgs)
       (intentionel.requires.emacs-package epkgs)
       (agda.requires.emacs-package epkgs)
       epkgs.graphviz-dot-mode epkgs.bnfc epkgs.purescript-mode
-      epkgs.go-mode
+      epkgs.go-mode epkgs.yaml-mode
     ] ++ (haskell.requires.emacs-packages epkgs)
       ++ (rust.requires.emacs-packages epkgs)
       ++ (flycheck.requires.emacs-packages epkgs)
@@ -124,7 +107,6 @@ let
       exwm.requires.emacs-config
       notmuch.requires.emacs-config
       cask.requires.emacs-config
-      znc.requires.emacs-config
       git.requires.emacs-config
       nix.requires.emacs-config
       fci.requires.emacs-config
@@ -133,10 +115,8 @@ let
       haskell.requires.emacs-config
       rust.requires.emacs-config
       company.requires.emacs-config
-      org-brain.requires.emacs-config
       org-roam.requires.emacs-config
       org-transclusion.requires.emacs-config
-      org-fc.requires.emacs-config
       org.requires.emacs-config
       agda.requires.emacs-config
       coq.requires.emacs-config
@@ -161,7 +141,9 @@ let
       pkgs.inkscape pkgs.zulip agda.requires.package
       pkgs.xfce.thunar pkgs.unzip pkgs.jq pkgs.evince pkgs.webcamoid
       pkgs.chromium pkgs.scrot pkgs.magic-wormhole pkgs.element-desktop pkgs.tty-share
-      pkgs.file
+      # FIXME add back in LD_LIBRARY_PATH for openbci
+      pkgs.file pkgs.jre pkgs.xorg.libXxf86vm pkgs.pre-commit pkgs.hunspell
+      pkgs.nix-prefetch-git pkgs.ledger-autosync
     ] ++ haskell.requires.packages ++ rust.requires.packages ++ org-roam.requires.packages
       ++ git.requires.packages;
   };
@@ -176,6 +158,8 @@ let
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
         EDITOR = "emacsclient";
         LIBCLANG_PATH = "${pkgs.llvmPackages.libclang}/lib";
+        DICPATH = "${pkgs.hunspellDicts.en-us}/share/hunspell";
+        LEDGER_FILE = "/home/shlevy/documents/financial/ledger";
       };
       oneshots = [
         exwm.requires.oneshot
