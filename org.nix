@@ -1,7 +1,5 @@
 let
   org-agenda-files = [
-    "~/documents/org-roam/20220816064337-anniversary_2022.org"
-    "~/documents/org-roam/20220816063511-year_1_objectivism_seminar_q4_work.org"
     "~/documents/org-roam/20220816062805-financial_planning.org"
     "~/documents/org-roam/20220816065933-conscient_guitar_study.org"
     "~/documents/org-roam/20220816070820-parenting_philosophy.org"
@@ -10,8 +8,6 @@ let
     "~/documents/org-roam/20220828114951-jasper_birth_preparation.org"
     "~/documents/org-roam/20220828114832-estate_planning.org"
     "~/documents/org-roam/agenda.org"
-    "~/documents/org-roam/20220905121446-certification_progress_tracking.org"
-    "~/documents/org-roam/20220822095740-marlowe_flake_migration.org"
     "~/documents/org-roam/20220818064242-marlowe_runtime_observability.org"
     "~/documents/org-roam/20220307094455-eventuo11y_0_1_0_0.org"
     "~/documents/org-roam/20220818070449-nomia_used_by_iog.org"
