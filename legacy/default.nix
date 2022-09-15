@@ -5,8 +5,6 @@ let
     config.allowUnfree = true;
   };
 
-  gnupg = pkgs.gnupg.override { guiSupport = true; };
-
   desktop-tools = import /home-persistent/shlevy/src/shlevy-desktop-tools pkgs;
 
   exwm = (pkgs.callPackage ./exwm.nix {}).compose {
@@ -126,8 +124,8 @@ let
   env = (pkgs.callPackage ./env.nix {}).compose {
     requires = {};
     provides.packages = [
-      emacs.requires.package pkgs.firefox (pkgs.pass.override { inherit gnupg; })
-      gnupg pkgs.isync pkgs.msmtp pkgs.haskellPackages.BNFC pkgs.bison pkgs.flex pkgs.binutils
+      emacs.requires.package pkgs.firefox
+      pkgs.isync pkgs.msmtp pkgs.haskellPackages.BNFC pkgs.bison pkgs.flex pkgs.binutils
       notmuch.requires.package desktop-tools.move-mail desktop-tools.mail-loop
       pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
       coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
@@ -152,9 +150,7 @@ let
     requires = {};
     provides = {
       env = {
-        PASSWORD_STORE_DIR = "/home-persistent/shlevy/creds/password-store/";
         HISTFILE = "/home-persistent/shlevy/bash_history";
-        GNUPGHOME = "/home-persistent/shlevy/creds/gnupg";
         "_JAVA_AWT_WM_NONREPARENTING" = "1";
         EDITOR = "emacsclient";
         LIBCLANG_PATH = "${pkgs.llvmPackages.libclang}/lib";
