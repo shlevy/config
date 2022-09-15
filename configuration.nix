@@ -31,7 +31,14 @@
     };
     systemPackages = let
       gnupg = pkgs.gnupg.override { guiSupport = true; };
-    in [ pkgs.gitFull gnupg (pkgs.pass.override { inherit gnupg; }) ];
+    in [
+      pkgs.gitFull
+      gnupg
+      (pkgs.pass.override { inherit gnupg; })
+      pkgs.firefox
+      pkgs.slack
+      pkgs.wl-clipboard
+    ];
   };
 
   fileSystems = {
