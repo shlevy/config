@@ -13,7 +13,7 @@
       extraConfig = ''
         (solaire-global-mode +1)
 
-        (load-theme 'doom-one t)
+        (load-theme 'doom-vibrant t)
         (doom-themes-visual-bell-config)
         (doom-themes-org-config)
 
