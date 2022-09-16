@@ -124,12 +124,12 @@ let
   env = (pkgs.callPackage ./env.nix {}).compose {
     requires = {};
     provides.packages = [
-      emacs.requires.package pkgs.firefox
+      emacs.requires.package
       pkgs.isync pkgs.msmtp pkgs.haskellPackages.BNFC pkgs.bison pkgs.flex pkgs.binutils
       notmuch.requires.package desktop-tools.move-mail desktop-tools.mail-loop
       pkgs.wire-desktop pkgs.signal-desktop nix.requires.package ledger.requires.package
       coq.requires.package pkgs.gnumake pkgs.texlive.combined.scheme-full
-      direnv.requires.package slack.requires.package
+      direnv.requires.package
       vlc.requires.package pkgs.pavucontrol gimp.requires.package
       spotify.requires.package cask.requires.package
       pkgs.yubikey-manager-qt pkgs.qemu_kvm pkgs.poppler_utils
@@ -201,11 +201,6 @@ let
   };
 
   haskell = (pkgs.callPackage ./haskell.nix {}).compose {
-    requires = {};
-    provides = {};
-  };
-
-  slack = (pkgs.callPackage ./slack.nix {}).compose {
     requires = {};
     provides = {};
   };
