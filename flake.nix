@@ -32,6 +32,7 @@
         $sudo nixos-rebuild "$cmd" --flake .
       '').outPath;
     };
+
     nixosConfigurations.darter6 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -42,6 +43,7 @@
         ./bash.nix
         ./emacs.nix
         ./git.nix
+        ./man.nix
         ./nix.nix
       ];
     };
