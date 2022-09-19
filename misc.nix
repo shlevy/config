@@ -1,10 +1,6 @@
-{ pkgs, inputs, ... }: let
-  pkgs-discord = import inputs.nixpkgs-discord {
-    inherit (pkgs) system config;
-  };
-in {
+{ pkgs, inputs, ... }: {
   home-manager.users.shlevy.home.packages = with pkgs; [
-    pkgs-discord.discord
+    discord
     zoom-us
   ];
 }
