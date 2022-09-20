@@ -4,10 +4,4 @@
 
     historyControl = [ "erasedups" "ignorespace" ];
   };
-
-  programs.bash.undistractMe = {
-    enable = true;
-
-    playSound = true;
-  };
 }
