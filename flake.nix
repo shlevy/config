@@ -45,6 +45,8 @@
         ./git.nix
         ./man.nix
         ./nix.nix
+
+        ./creds.nix
         ./misc.nix
       ];
     };

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   home-manager.users.shlevy.home.packages = with pkgs; [
     discord
     zoom-us
