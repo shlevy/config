@@ -24,26 +24,6 @@
     };
   };
 
-  environment = {
-    variables = {
-      GNUPGHOME = "/home/shlevy/creds/gnupg";
-      PASSWORD_STORE_DIR = "/home/shlevy/creds/password-store";
-    };
-    systemPackages = let
-      gnupg = pkgs.gnupg.override { guiSupport = true; };
-
-      pass = pkgs.pass.override { inherit gnupg; };
-    in [
-      gnupg
-
-      pass
-      pkgs.wl-clipboard
-
-      pkgs.firefox
-      pkgs.slack
-    ];
-  };
-
   fileSystems = {
     "/" = {
       fsType = "btrfs";

@@ -21,10 +21,11 @@
 
       extraConfig.rerere.enabled = true;
 
-      extraConfig.sendmail = {
-        smtpencryption = "tls";
+      extraConfig.sendemail = {
+        smtpencryption = "ssl";
         smtpserver = "mail.hover.com";
         smtpuser = "shea@shealevy.com";
+        smtpserverport = 465;
       };
 
       delta.enable = true;

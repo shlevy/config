@@ -1,0 +1,25 @@
+commit 680d8a190c7b94a14c3f4d80f5bb85a81bbe8d16
+Author: Shea Levy <shea@shealevy.com>
+Date:   Fri Sep 23 16:26:11 2022 -0400
+
+    clip(): Explicitly set mime-type with wl-copy.
+    
+    This avoids the need for wl-copy to infer the mime-type, in theory
+    could prevent accidental overlap with a different mime-type, and works
+    around a current bug in autodetection[1].
+    
+    [1]: https://github.com/bugaevc/wl-clipboard/issues/148
+
+diff --git a/src/password-store.sh b/src/password-store.sh
+index a0dcf2e..80e8142 100755
+--- a/src/password-store.sh
++++ b/src/password-store.sh
+@@ -156,7 +156,7 @@ check_sneaky_paths() {
+ 
+ clip() {
+ 	if [[ -n $WAYLAND_DISPLAY ]]; then
+-		local copy_cmd=( wl-copy )
++		local copy_cmd=( wl-copy --type 'text/plain;charset=utf-8' )
+ 		local paste_cmd=( wl-paste -n )
+ 		if [[ $X_SELECTION == primary ]]; then
+ 			copy_cmd+=( --primary )
