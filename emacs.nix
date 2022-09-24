@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   home-manager.users.shlevy = {
     programs.emacs = {
@@ -8,8 +6,6 @@
       extraPackages = epkgs: [
         epkgs.solaire-mode
         epkgs.doom-themes
-
-        epkgs.flycheck
       ];
 
       extraConfig = ''
@@ -18,8 +14,6 @@
         (load-theme 'doom-vibrant t)
         (doom-themes-visual-bell-config)
         (doom-themes-org-config)
-
-        (global-flycheck-mode)
 
         (setq
           backup-by-copying t
