@@ -1,9 +1,7 @@
-{ pkgs, ... }: let
-  creds = pkgs.runCommand "creds" {} ''
-    ln -sv /home/shlevy/creds $out
-  '';
-in {
-  home-manager.users.shlevy = { config, ... }: {
+{ pkgs, ... }: {
+  home-manager.users.shlevy = { config, ... }: let
+    creds = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/creds";
+  in {
     programs.gpg = {
       enable = true;
 
