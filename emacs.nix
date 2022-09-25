@@ -6,6 +6,7 @@
       extraPackages = epkgs: [
         epkgs.solaire-mode
         epkgs.doom-themes
+        epkgs.vlf
       ];
 
       extraConfig = ''
@@ -14,6 +15,8 @@
         (load-theme 'doom-vibrant t)
         (doom-themes-visual-bell-config)
         (doom-themes-org-config)
+
+        (require 'vlf-setup)
 
         (setq
           backup-by-copying t
