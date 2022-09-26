@@ -45,6 +45,7 @@
         ./git.nix
         ./man.nix
         ./nix.nix
+        ./mail.nix
         ./development.nix
 
         ./creds.nix
