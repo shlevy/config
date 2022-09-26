@@ -109,6 +109,7 @@ in {
     programs.notmuch.enable = true;
     programs.notmuch.hooks.postNew = ''
       notmuch tag +spam -inbox is:inbox folder:shea@shealevy.com/Spam
+      notmuch tag +deleted -inbox is:inbox folder:shea@shealevy.com/Trash
     '';
 
     programs.emacs = {
@@ -141,6 +142,7 @@ in {
           mail-envelope-from 'header
           mail-specify-envelope-from t
           message-sendmail-envelope-from 'header
+          message-forward-as-mime t
           mml-secure-key-preferences
             (quote
              ((OpenPGP
