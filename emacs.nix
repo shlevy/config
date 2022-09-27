@@ -3,10 +3,11 @@
     programs.emacs = {
       enable = true;
 
-      extraPackages = epkgs: [
-        epkgs.solaire-mode
-        epkgs.doom-themes
-        epkgs.vlf
+      extraPackages = epkgs: with epkgs; [
+        solaire-mode
+        doom-themes
+        vlf
+        company
       ];
 
       extraConfig = ''
@@ -17,6 +18,8 @@
         (doom-themes-org-config)
 
         (require 'vlf-setup)
+
+        (add-hook 'after-init-hook 'global-company-mode)
 
         (setq
           backup-by-copying t

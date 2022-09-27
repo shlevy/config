@@ -44,12 +44,15 @@
         ./emacs.nix
         ./git.nix
         ./man.nix
-        ./nix.nix
         ./mail.nix
+
+        ./nix.nix
+        ./haskell.nix
         ./development.nix
 
         ./creds.nix
         ./misc.nix
+        ./no-nix-buffer.nix
       ];
     };
   };
