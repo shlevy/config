@@ -23,6 +23,7 @@
     monad-control
     mtl
     network
+    resourcet
     semigroupoids
     servant-client
     text

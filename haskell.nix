@@ -1,5 +1,7 @@
-{
+{ pkgs, ...}: {
   home-manager.users.shlevy = {
+    home.packages = with pkgs; [ cabal-install ];
+
     programs.emacs = {
       extraPackages = epkgs: with epkgs; [
         haskell-mode company-ghci flycheck-haskell
