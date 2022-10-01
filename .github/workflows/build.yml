@@ -1,0 +1,16 @@
+---
+name: Build
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v17
+      - uses: cachix/cachix-action@v10
+        with:
+          name: shlevy
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - run: nix run --no-update-lock-file --print-build-logs . -- build
