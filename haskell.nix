@@ -13,8 +13,11 @@
         (require 'haskell-interactive-mode)
         (require 'haskell-process)
         (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+      '';
+
+      extraCustomize = ''
         (require 'company-ghci)
-        (push 'company-ghci company-backends)
+        (customize-add-to-list 'company-backends 'company-ghci)
       '';
     };
   };
