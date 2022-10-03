@@ -6,6 +6,7 @@
       jq
       firefox
       slack
+      file
     ];
 
     programs.command-not-found.enable = true;
