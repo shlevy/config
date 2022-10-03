@@ -49,6 +49,8 @@
         ./git.nix
         ./man.nix
         ./mail.nix
+        ./org-roam.nix
+        ./org.nix
 
         ./nix.nix
         ./haskell.nix

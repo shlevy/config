@@ -22,6 +22,8 @@
 
           (add-hook 'after-init-hook 'global-company-mode)
 
+          (global-visual-line-mode)
+
           (defun customize-add-to-list (variable value &optional comment)
             "Add VALUE to the custom list variable VARIABLE, and return VALUE.
           VALUE is a Lisp object.
