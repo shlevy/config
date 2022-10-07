@@ -51,6 +51,7 @@
         ./mail.nix
         ./org-roam.nix
         ./org.nix
+        ./ledger.nix
 
         ./nix.nix
         ./haskell.nix
