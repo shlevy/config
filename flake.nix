@@ -42,6 +42,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
+        ./docker.nix
         ./home-manager.nix
 
         ./bash.nix
