@@ -9,6 +9,7 @@
           doom-themes
           vlf
           company
+          agda-input
         ];
 
         extraConfig = ''
@@ -23,6 +24,8 @@
           (add-hook 'after-init-hook 'global-company-mode)
 
           (global-visual-line-mode)
+
+          (require 'agda-input)
 
           (defun customize-add-to-list (variable value &optional comment)
             "Add VALUE to the custom list variable VARIABLE, and return VALUE.
