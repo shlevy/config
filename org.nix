@@ -11,7 +11,12 @@
         (define-key global-map "\C-cl" 'org-store-link)
         (define-key global-map "\C-ca" 'org-agenda)
 
-        (setq org-agenda-custom-commands '(("n" "Agenda and active TODOs" ((agenda "") (todo "TODO" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))))))))
+        (setq org-agenda-custom-commands '(
+          ("n" "Agenda and active TODOs" (
+            (agenda "" ((org-agenda-span 'week)))
+            (todo "TODO" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))))
+          ))
+        ))
       '';
 
       extraCustomize = ''
