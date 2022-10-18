@@ -13,8 +13,11 @@
 
         (setq org-agenda-custom-commands '(
           ("n" "Agenda and active TODOs" (
-            (agenda "" ((org-agenda-span 'week)))
+            (agenda "")
             (todo "TODO" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))))
+          ))
+          ("d" "Scheduiled today" (
+            (agenda "" ((org-agenda-span 'day) (org-agenda-entry-types '(:scheduled))))
           ))
         ))
       '';
@@ -22,7 +25,6 @@
       extraCustomize = ''
         (customize-set-variable 'org-agenda-files '("~/Documents/roam/planning"))
         (customize-set-variable 'org-log-into-drawer t)
-        (customize-set-variable 'org-agenda-span 'day)
       '';
     };
   };
