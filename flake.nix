@@ -52,6 +52,7 @@
         ./mail.nix
         ./org-roam.nix
         ./org.nix
+        ./org-pomodoro.nix
         ./ledger.nix
 
         ./nix.nix
