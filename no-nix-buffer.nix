@@ -13,7 +13,7 @@
     pathsToLink = [ "/include" "/lib" ];
   };
 
-  ghc = pkgs.haskell.packages.ghc8107.ghcWithPackages (p: with p; [
+  ghc = pkgs.haskell.packages.ghc924.ghcWithPackages (p: with p; [
     zlib
     digest
     temporary
