@@ -10,6 +10,7 @@
 
       extraCustomize = ''
         (customize-set-variable 'org-pomodoro-ticking-sound-p t)
+        (customize-set-variable 'org-pomodoro-length 55)
       '';
     };
   };
