@@ -31,6 +31,7 @@ in {
   home-manager.users.shlevy = { config, ... }: let
     email = config.accounts.email;
   in {
+    home.packages = [ move-mail ];
     accounts.email.accounts."shea@shealevy.com" = {
       address = "shea@shealevy.com";
 
