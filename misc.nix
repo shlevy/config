@@ -7,6 +7,7 @@
       firefox
       slack
       file
+      pdftk
     ];
 
     programs.command-not-found.enable = true;
