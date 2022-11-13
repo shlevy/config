@@ -8,6 +8,8 @@
       slack
       file
       pdftk
+      unzip
+      signal-desktop
     ];
 
     programs.command-not-found.enable = true;
