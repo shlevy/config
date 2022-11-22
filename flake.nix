@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:shlevy/nixpkgs/zotero-6.0.18-22.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +54,7 @@
         ./org.nix
         ./org-pomodoro.nix
         ./ledger.nix
+        ./zotero.nix
 
         ./nix.nix
         ./haskell.nix
