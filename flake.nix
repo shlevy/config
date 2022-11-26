@@ -54,7 +54,7 @@
         ./org.nix
         ./org-pomodoro.nix
         ./ledger.nix
-        ./zotero.nix
+        ./citations.nix
 
         ./nix.nix
         ./haskell.nix
