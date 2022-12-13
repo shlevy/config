@@ -28,8 +28,6 @@
         smtpserverport = 465;
       };
 
-      delta.enable = true;
-
       lfs.enable = true;
     };
 
