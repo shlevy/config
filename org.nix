@@ -20,6 +20,7 @@
             (agenda "" ((org-agenda-span 'day) (org-agenda-entry-types '(:scheduled))))
           ))
         ))
+        (add-hook 'org-agenda-mode-hook (lambda () (visual-line-mode -1) (setq truncate-lines 1)))
       '';
 
       extraCustomize = ''
