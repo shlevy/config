@@ -10,6 +10,7 @@
       pdftk
       unzip
       signal-desktop
+      element-desktop
     ];
 
     programs.command-not-found.enable = true;
