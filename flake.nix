@@ -2,13 +2,16 @@
   inputs = {
     # remove nix.package setting when upgrading past 22.11
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    # Change to nixos-unstable once ofxclient update has landed
+    nixpkgs-master.url = "github:NixOS/nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-master, ... }@inputs: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    pkgsMaster = nixpkgs-master.legacyPackages.x86_64-linux;
     inherit (pkgs) writeShellScript nixos-rebuild gnugrep;
   in {
     apps.x86_64-linux.default = {
@@ -40,7 +43,7 @@
 
     nixosConfigurations.darter6 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs pkgsMaster; };
       modules = [
         ./configuration.nix
         ./docker.nix
@@ -54,7 +57,7 @@
         ./org-roam.nix
         ./org.nix
         ./org-pomodoro.nix
-        ./ledger.nix
+        ./finances.nix
         ./citations.nix
 
         ./nix.nix
@@ -64,6 +67,12 @@
         ./creds.nix
         ./misc.nix
         ./no-nix-buffer.nix
+        {
+          system.configurationRevision = self.rev or null;
+          system.extraSystemBuilderCmds = ''
+            ln -sv ${./.} $out/config${if self ? rev then "-${self.rev}" else ""}
+          '';
+        }
       ];
     };
   };

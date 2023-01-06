@@ -1,6 +1,6 @@
-{
+{ pkgsMaster, ... }: {
   home-manager.users.shlevy = { pkgs, ... }: {
-    home.packages = [ pkgs.ledger pkgs.ledger-autosync ];
+    home.packages = [ pkgs.ledger pkgs.ledger-autosync pkgsMaster.python3Packages.ofxtools ];
     programs.emacs.extraPackages = epkgs: [ epkgs.ledger-mode ];
   };
 
