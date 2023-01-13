@@ -10,9 +10,10 @@
 
       extraCustomize = ''
         (customize-set-variable 'org-pomodoro-ticking-sound-p t)
-        (customize-set-variable 'org-pomodoro-length 30)
+        (customize-set-variable 'org-pomodoro-length 60)
         (customize-set-variable 'org-pomodoro-short-break-length 2)
         (customize-set-variable 'org-pomodoro-long-break-length 5)
+        (customize-set-variable 'org-pomodoro-expiry-time 30)
         (customize-set-variable 'org-pomodoro-ticking-sound-states '(:pomodoro))
         (customize-set-variable 'org-pomodoro-start-sound "~/Music/reception-bell.wav")
         (customize-set-variable 'org-pomodoro-finished-sound "~/Music/reception-bell.wav")
