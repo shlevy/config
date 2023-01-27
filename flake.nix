@@ -48,6 +48,7 @@
         ./configuration.nix
         ./docker.nix
         ./home-manager.nix
+        ./btrbk.nix
 
         ./bash.nix
         ./emacs.nix

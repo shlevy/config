@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   boot = {
     initrd = {
@@ -24,12 +24,20 @@
     };
   };
 
-  fileSystems = {
-    "/" = {
-      fsType = "btrfs";
-      label = "NixOS";
-      options = [ "defaults" "noatime" "compress=zstd" ];
+  fileSystems = let
+    subvols = {
+      "/" = "rootfs";
+      "/etc" = "etc";
+      "/home" = "home";
+      "/tmp" = "tmp";
+      "/root" = "root";
+      "/nix" = "nix";
     };
+  in (lib.mapAttrs (_: subvol: {
+    fsType = "btrfs";
+    label = "NixOS";
+    options = [ "defaults" "noatime" "compress=zstd" "subvol=${subvol}" ];
+  }) subvols) // {
     "/boot" = {
       label = "boot";
       fsType = "vfat";
