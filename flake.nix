@@ -2,8 +2,8 @@
   inputs = {
     # remove nix.package setting when upgrading past 22.11
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    # Change to nixos-unstable once ofxclient update has landed
-    nixpkgs-master.url = "github:NixOS/nixpkgs";
+    # Remove when upgrading past 22.11
+    nixpkgs-master.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
