@@ -11,6 +11,7 @@
       unzip
       signal-desktop
       element-desktop
+      magic-wormhole
     ];
 
     programs.command-not-found.enable = true;
