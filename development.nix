@@ -5,6 +5,7 @@
       extraPackages = epkgs: with epkgs; [
         flycheck
         yaml-mode
+        markdown-mode
       ];
 
       extraConfig = ''
