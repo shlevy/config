@@ -1,6 +1,5 @@
 {
   inputs = {
-    # remove nix.package setting when upgrading past 22.11
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     # Remove when upgrading past 22.11
     nixpkgs-master.url = "github:NixOS/nixpkgs/nixos-unstable";
