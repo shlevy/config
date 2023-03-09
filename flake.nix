@@ -1,6 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    # Revert to commented out when https://github.com/NixOS/nixpkgs/pull/220353 is merged
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:shlevy/nixpkgs/biscuit-cli-22.11";
     # Remove when upgrading past 22.11
     nixpkgs-master.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {

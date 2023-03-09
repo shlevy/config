@@ -12,6 +12,7 @@
       signal-desktop
       element-desktop
       magic-wormhole
+      biscuit-cli
     ];
 
     programs.command-not-found.enable = true;
