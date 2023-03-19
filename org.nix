@@ -24,7 +24,7 @@
       '';
 
       extraCustomize = ''
-        (customize-set-variable 'org-agenda-files '("~/Documents/roam/project"))
+        (customize-set-variable 'org-agenda-files '("~/Documents/roam/project" "~/Documents/roam/project/to-clean"))
         (customize-set-variable 'org-log-into-drawer t)
         (customize-set-variable 'org-columns-default-format "%40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM %CLOCKSUM_T")
       '';
