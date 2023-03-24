@@ -13,6 +13,7 @@
       element-desktop
       magic-wormhole
       biscuit-cli
+      libreoffice
     ];
 
     programs.command-not-found.enable = true;
