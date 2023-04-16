@@ -14,7 +14,7 @@
     experimental-features = [ "nix-command" "flakes" ];
     bash-prompt = ''\n\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w \[\033[01;31m\](dev-shell)\[\033[01;32m\]]\$ \[\033[0m\]'';
   };
-  nix.package = pkgsMaster.nixVersions.nix_2_13;
+  nix.package = pkgsMaster.nixVersions.nix_2_14;
 
   home-manager.users.shlevy.programs.emacs.extraPackages = epkgs: [
     epkgs.nix-mode
