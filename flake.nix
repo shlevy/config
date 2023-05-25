@@ -36,7 +36,7 @@
           sudo=sudo
         fi
 
-        $sudo "$nixos_rebuild" "$cmd" --flake .#darter6
+        $sudo "$nixos_rebuild" "$cmd" --flake .#spectre
       '').outPath;
     };
 
@@ -44,35 +44,17 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs pkgsMaster; };
       modules = [
-        ./configuration.nix
-        ./docker.nix
-        ./home-manager.nix
-        ./btrbk.nix
+        ./darter6.nix
+        ./nixos-common.nix
+      ];
+    };
 
-        ./bash.nix
-        ./emacs.nix
-        ./git.nix
-        ./man.nix
-        ./mail.nix
-        ./org-roam.nix
-        ./org.nix
-        ./org-pomodoro.nix
-        ./finances.nix
-        ./citations.nix
-
-        ./nix.nix
-        ./haskell.nix
-        ./development.nix
-
-        ./creds.nix
-        ./misc.nix
-        ./no-nix-buffer.nix
-        {
-          system.configurationRevision = self.rev or null;
-          system.extraSystemBuilderCmds = ''
-            ln -sv ${./.} $out/config${if self ? rev then "-${self.rev}" else ""}
-          '';
-        }
+    nixosConfigurations.spectre = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs pkgsMaster; };
+      modules = [
+        ./spectre.nix
+        ./nixos-common.nix
       ];
     };
   };

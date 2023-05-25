@@ -1,15 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   boot = {
     initrd = {
       availableKernelModules = [
         "btrfs"
-        "nvme"
-        "rtsx_pci_sdmmc"
       ];
-      luks.devices.NixOS.device = "/dev/disk/by-label/NixOS\\\\x20encrypted";
     };
-    kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
 
     loader = {
@@ -47,7 +43,6 @@
   hardware = {
     bluetooth.enable = true;
     pulseaudio = { enable = true; package = pkgs.pulseaudioFull; };
-    system76.enableAll = true;
     enableRedistributableFirmware = true;
   };
 
@@ -59,7 +54,7 @@
     defaultLocale = "en_US.UTF-8";
   };
   networking = {
-    hostName = "darter6";
+    hostName = config.systemSpecific.machineName;
     domain = "shealevy.com";
   };
   nixpkgs.config.allowUnfree = true;
@@ -67,7 +62,7 @@
   services = {
     avahi = {
       enable = true;
-      hostName = "darter6";
+      hostName = config.systemSpecific.machineName;
       nssmdns = true;
     };
     printing = {
@@ -86,7 +81,6 @@
       };
     };
   };
-  system.stateVersion = "22.05";
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
