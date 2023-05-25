@@ -1,16 +1,13 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    # Remove when upgrading past 22.11
-    nixpkgs-master.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-master, ... }@inputs: let
+  outputs = { self, nixpkgs, ... }@inputs: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    pkgsMaster = nixpkgs-master.legacyPackages.x86_64-linux;
     inherit (pkgs) writeShellScript nixos-rebuild gnugrep;
   in {
     apps.x86_64-linux.default = {
@@ -42,7 +39,7 @@
 
     nixosConfigurations.darter6 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs pkgsMaster; };
+      specialArgs = { inherit inputs; };
       modules = [
         ./darter6.nix
         ./nixos-common.nix
@@ -51,7 +48,7 @@
 
     nixosConfigurations.spectre = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs pkgsMaster; };
+      specialArgs = { inherit inputs; };
       modules = [
         ./spectre.nix
         ./nixos-common.nix
