@@ -1,7 +1,7 @@
 {
   home-manager.users.shlevy = {
     programs.emacs = {
-      extraPackages = epkgs: [ epkgs.melpaStablePackages.org-roam ];
+      extraPackages = epkgs: [ epkgs.org-roam ];
 
       extraConfig = ''
         (require 'org-roam)
