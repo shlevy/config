@@ -14,7 +14,7 @@
               '(("m" "main" plain
                  "%?"
                  :if-new (file+head "main/''${slug}.org"
-                                    "#+title: ''${title}\n* Folgezettel\n- %u ::\n* Changelog\n- %u :: Initial elaboration\n")
+                                    "#+title: ''${title}\n* Folgezettel/Changelog\n- %u ::\n")
                  :immediate-finish t
                  :unnarrowed t)
                 ("t" "state" plain
