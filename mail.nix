@@ -166,6 +166,9 @@ in {
           send-mail-program "msmtp"
           sendmail-program "msmtp")
       '';
+      extraCustomize = ''
+        (customize-set-variable 'message-fill-column nil)
+      '';
     };
   };
 }
