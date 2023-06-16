@@ -23,7 +23,11 @@
 
   nix.nixPath = [ "nixpkgs=/home/shlevy/.nix-defexpr/channels/nixos" ];
 
-  home-manager.users.shlevy.programs.emacs.extraPackages = epkgs: [
-    epkgs.nix-mode
-  ];
+  home-manager.users.shlevy.programs = {
+    command-not-found.dbPath = "/home/shlevy/.nix-defexpr/channels/nixos/programs.sqlite";
+
+    emacs.extraPackages = epkgs: [
+      epkgs.nix-mode
+    ];
+  };
 }
