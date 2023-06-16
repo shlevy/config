@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  imports = [
+    ./nix/tweag.nix
+    ./nix/nixbuild.net.nix
+  ];
+
   nix.settings = {
     max-jobs = 8;
     cores = 0;
@@ -17,25 +22,6 @@
   nix.package = pkgs.nixVersions.nix_2_15;
 
   nix.nixPath = [ "nixpkgs=/home/shlevy/.nix-defexpr/channels/nixos" ];
-
-  nix.buildMachines = [
-    {
-      hostName = "build01.tweag.io";
-      maxJobs = 24;
-      sshUser = "nix";
-      sshKey = "/home/shlevy/creds/ssh/id-tweag-builder";
-      system = "x86_64-linux";
-      supportedFeatures = [ "big-parallel" "kvm" "nixos-test" ];
-    }
-    {
-      hostName = "build02.tweag.io";
-      maxJobs = 24;
-      sshUser = "nix";
-      sshKey = "/home/shlevy/creds/ssh/id-tweag-builder";
-      systems = ["aarch64-darwin" "x86_64-darwin"];
-      supportedFeatures = [ "big-parallel" ];
-    }
-  ];
 
   home-manager.users.shlevy.programs.emacs.extraPackages = epkgs: [
     epkgs.nix-mode
