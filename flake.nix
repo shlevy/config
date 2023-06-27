@@ -33,8 +33,17 @@
           sudo=sudo
         fi
 
-        $sudo "$nixos_rebuild" "$cmd" --flake .#spectre
+        $sudo "$nixos_rebuild" "$cmd" --flake .#carbon
       '').outPath;
+    };
+
+    nixosConfigurations.carbon = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./carbon.nix
+        ./nixos-common.nix
+      ];
     };
 
     nixosConfigurations.darter6 = nixpkgs.lib.nixosSystem {
