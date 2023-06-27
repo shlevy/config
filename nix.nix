@@ -8,7 +8,7 @@
     max-jobs = 8;
     cores = 0;
     sandbox = true;
-    substituters = [ "https://cache.iog.io" "https://cache.zw3rk.com" "https://shlevy.cachix.org" ];
+    substituters = pkgs.lib.mkAfter [ "https://cache.iog.io" "https://cache.zw3rk.com" "https://shlevy.cachix.org" ];
     trusted-public-keys = [
       "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
       "shlevy.cachix.org-1:m0i9ZqalXsWjEkdJT8+hX+Ev7sGnYOPA+DHAS9B6mPo="
