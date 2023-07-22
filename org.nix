@@ -11,20 +11,20 @@
         (define-key global-map "\C-cl" 'org-store-link)
         (define-key global-map "\C-ca" 'org-agenda)
 
+        (with-eval-after-load 'org
+          (define-key org-mode-map (kbd "C-c ,") #'org-time-stamp-inactive))
+
         (setq org-agenda-custom-commands '(
           ("n" "Agenda and active TODOs" (
-            (agenda "")
             (todo "TODO" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))))
-          ))
-          ("d" "Scheduiled today" (
-            (agenda "" ((org-agenda-span 'day) (org-agenda-entry-types '(:scheduled))))
+            (agenda "")
           ))
         ))
         (add-hook 'org-agenda-mode-hook (lambda () (visual-line-mode -1) (setq truncate-lines 1)))
       '';
 
       extraCustomize = ''
-        (customize-set-variable 'org-agenda-files '("~/Documents/roam/systems" "~/Documents/roam/project/income-yielding-portfolio" "~/Documents/roam/project/income-yielding-portfolio/nomia-minimum-viable-incarnation" "~/Documents/roam/project/income-yielding-portfolio/initial-prospectuses" "~/Documents/roam/project/energy-maximization" "~/Documents/roam/project/philosophically-objective-parenting-perfection" "~/Documents/roam/project/philosophically-objective-parenting-perfection/elementary-education-secured" "~/Documents/roam/project/IOG" "~/Documents/roam/project/ARU" "~/Documents/roam/project" "~/Documents/roam/project/to-clean"))
+        (customize-set-variable 'org-agenda-files '("~/Documents/roam/main/objective_articulation_of_philosophy_incarnation.org" "~/Documents/roam/main/philosophy_incarnation_as_primary_claimant.org" "~/Documents/roam/main/philosophy_incarnation.org"  "~/Documents/roam/main/inbox_processing_equilibrium.org" "~/Documents/roam/main/objectivism_seminar_y2q4_capitalism_and_aesthetics.org" "~/Documents/roam/main/introduction_to_writing.org" "~/Documents/roam/main/project_musical_chairs.org" "~/Documents/roam/project" "~/Documents/roam/main/tickler.org" "~/Documents/roam/main/household_maintenance.org" "~/Documents/roam/main/administrivia.org" "~/Documents/roam/project/to-clean/income-yielding-portfolio" "~/Documents/roam/project/to-clean/income-yielding-portfolio/nomia-minimum-viable-incarnation" "~/Documents/roam/project/to-clean/income-yielding-portfolio/initial-prospectuses" "~/Documents/roam/project/to-clean/energy-maximization" "~/Documents/roam/project/to-clean/philosophically-objective-parenting-perfection" "~/Documents/roam/project/to-clean/philosophically-objective-parenting-perfection/elementary-education-secured" "~/Documents/roam/project/to-clean/IOG" "~/Documents/roam/project/to-clean/ARU" "~/Documents/roam/project/to-clean" "~/Documents/roam/project/to-clean/older"))
         (customize-set-variable 'org-log-into-drawer t)
         (customize-set-variable 'org-columns-default-format "%40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM %CLOCKSUM_T")
       '';

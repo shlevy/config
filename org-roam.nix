@@ -17,12 +17,6 @@
                                     "#+title: ''${title}\n* Folgezettel/Changelog\n- %u ::\n")
                  :immediate-finish t
                  :unnarrowed t)
-                ("t" "state" plain
-                 "%?"
-                 :if-new (file+head "state/''${slug}.org"
-                                    "#+title: ''${title}\n")
-                 :immediate-finish t
-                 :unnarrowed t)
                 ("s" "source" plain "%?"
                  :if-new
                  (file+head "source/''${title}.org" "#+title: ''${title}\n")
