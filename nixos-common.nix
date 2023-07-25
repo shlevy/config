@@ -6,6 +6,7 @@
     ./docker.nix
     ./home-manager.nix
     ./btrbk.nix
+    ./firmware.nix
 
     ./bash.nix
     ./emacs.nix
