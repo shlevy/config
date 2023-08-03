@@ -1,13 +1,15 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, ... }@inputs: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    pkgsUnstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
     inherit (pkgs) writeShellScript nixos-rebuild gnugrep;
   in {
     apps.x86_64-linux.default = {
@@ -39,7 +41,7 @@
 
     nixosConfigurations.carbon = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs pkgsUnstable; };
       modules = [
         ./carbon.nix
         ./nixos-common.nix
@@ -48,7 +50,7 @@
 
     nixosConfigurations.darter6 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs pkgsUnstable; };
       modules = [
         ./darter6.nix
         ./nixos-common.nix
@@ -57,7 +59,7 @@
 
     nixosConfigurations.spectre = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs pkgsUnstable; };
       modules = [
         ./spectre.nix
         ./nixos-common.nix
