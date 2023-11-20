@@ -17,6 +17,7 @@
 
       extraConfig = ''
         (require 'priodyn)
+        (add-to-list 'org-tags-exclude-from-inheritance "project")
         (priodyn-manage-agenda)
       '';
 
