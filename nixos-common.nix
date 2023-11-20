@@ -16,6 +16,7 @@
     ./org-roam.nix
     ./org.nix
     ./org-pomodoro.nix
+    ./priodyn.nix
     ./finances.nix
     ./citations.nix
 
