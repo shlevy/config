@@ -10,6 +10,7 @@
           vlf
           company
           agda-input
+          package-lint
         ];
 
         extraConfig = ''
