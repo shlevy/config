@@ -14,6 +14,8 @@
       magic-wormhole
       biscuit-cli
       libreoffice
+      whatsapp-for-linux
+      wineWowPackages.waylandFull
     ];
 
     programs.command-not-found.enable = true;
