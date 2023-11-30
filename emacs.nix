@@ -1,5 +1,5 @@
 {
-  home-manager.users.shlevy = { lib, config, ... }: {
+  home-manager.users.shlevy = { pkgs, lib, config, ... }: {
     config = {
       programs.emacs = {
         enable = true;
@@ -12,6 +12,8 @@
           agda-input
           package-lint
         ];
+
+        package = pkgs.emacs29-pgtk;
 
         extraConfig = ''
           (solaire-global-mode +1)
