@@ -17,6 +17,12 @@
                                     "#+title: ''${title}\n* Folgezettel/Changelog\n- %u ::\n")
                  :immediate-finish t
                  :unnarrowed t)
+                ("p" "project" plain
+                 "%?"
+                 :if-new (file+head "main/''${slug}.org"
+                                    "#+FILETAGS: :project:\n#+title: ''${title}\n* Folgezettel/Changelog\n- %u ::\n")
+                 :immediate-finish t
+                 :unnarrowed t)
                 ("s" "source" plain "%?"
                  :if-new
                  (file+head "source/''${title}.org" "#+title: ''${title}\n")
