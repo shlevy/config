@@ -1,4 +1,4 @@
-{
+{ lib, ... }: {
   nix.buildMachines = [
     { hostName = "eu.nixbuild.net";
       system = "x86_64-linux";
@@ -6,6 +6,11 @@
       supportedFeatures = [ "benchmark" "big-parallel" ];
     }
   ];
+
+  nix.settings = {
+    substituters = lib.mkAfter [ "ssh://eu.nixbuild.net" ];
+    trusted-public-keys = [ "nixbuild.net/smart.contracts@iohk.io-1:s2PhQXWwsZo1y5IxFcx2D/i2yfvgtEnRBOZavlA8Bog=" ];
+  };
 
   programs.ssh.extraConfig = ''
     Host eu.nixbuild.net
