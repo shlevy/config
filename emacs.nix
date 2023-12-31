@@ -11,6 +11,7 @@
           company
           agda-input
           package-lint
+          pdf-tools
         ];
 
         package = pkgs.emacs29-pgtk;
@@ -29,6 +30,8 @@
           (global-visual-line-mode)
 
           (require 'agda-input)
+
+          (pdf-tools-install)
 
           (defun customize-add-to-list (variable value &optional comment)
             "Add VALUE to the custom list variable VARIABLE, and return VALUE.
