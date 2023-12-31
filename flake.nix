@@ -34,7 +34,7 @@
           sudo=sudo
         fi
 
-        $sudo "$nixos_rebuild" "$cmd" --flake .#carbon
+        $sudo NIX_REMOTE=daemon "$nixos_rebuild" "$cmd" --flake .#carbon
       '').outPath;
     };
 
