@@ -16,6 +16,7 @@
 
         (setq org-agenda-custom-commands '(
           ("n" "Agenda and active TODOs" (
+            (todo "PROGRESS" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))))
             (todo "TODO" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline))))
             (agenda "")
           ))
