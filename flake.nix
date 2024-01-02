@@ -31,10 +31,10 @@
         then
           sudo=
         else
-          sudo=sudo
+          sudo=sudo NIX_REMOTE=daemon
         fi
 
-        $sudo NIX_REMOTE=daemon "$nixos_rebuild" "$cmd" --flake .#carbon
+        $sudo "$nixos_rebuild" "$cmd" --flake .#carbon
       '').outPath;
     };
 
