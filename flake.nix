@@ -31,7 +31,7 @@
         then
           sudo=
         else
-          sudo=sudo NIX_REMOTE=daemon
+          sudo="sudo NIX_REMOTE=daemon"
         fi
 
         $sudo "$nixos_rebuild" "$cmd" --flake .#carbon
