@@ -1,6 +1,8 @@
 {
-  home-manager.users.shlevy = { pkgs, ... }: {
-    home.packages = [ pkgs.ledger pkgs.ledger-autosync pkgs.python3Packages.ofxtools ];
+  home-manager.users.shlevy = { pkgs, ... }: let
+    ofxPython = pkgs.python3.withPackages (ps: [ ps.ofxtools ]);
+  in {
+    home.packages = [ pkgs.ledger pkgs.ledger-autosync ofxPython ];
     programs.emacs.extraPackages = epkgs: [ epkgs.ledger-mode ];
   };
 
