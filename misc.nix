@@ -16,6 +16,7 @@
       libreoffice
       whatsapp-for-linux
       wineWowPackages.waylandFull
+      ncdu
     ];
 
     programs.command-not-found.enable = true;
