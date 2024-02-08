@@ -1,6 +1,7 @@
 {
   inputs = {
     # Check default version for emacs when upgrading
+    # Remove VNC overrides when upgrading
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";

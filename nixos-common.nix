@@ -7,6 +7,7 @@
     ./home-manager.nix
     ./btrbk.nix
     ./firmware.nix
+    ./remote.nix
 
     ./bash.nix
     ./emacs.nix
