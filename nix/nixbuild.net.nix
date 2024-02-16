@@ -8,7 +8,7 @@
   ];
 
   nix.settings = {
-    substituters = lib.mkAfter [ "ssh://eu.nixbuild.net" ];
+#    substituters = lib.mkAfter [ "ssh://eu.nixbuild.net" ];
     trusted-public-keys = [ "nixbuild.net/smart.contracts@iohk.io-1:s2PhQXWwsZo1y5IxFcx2D/i2yfvgtEnRBOZavlA8Bog=" ];
   };
 
