@@ -23,6 +23,7 @@
 
     ./nix.nix
     ./haskell.nix
+    ./rust.nix
     ./development.nix
 
     ./creds.nix
