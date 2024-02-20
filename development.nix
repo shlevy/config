@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   home-manager.users.shlevy = {
     home.packages = with pkgs; [ yamllint ];
     programs.direnv = {
@@ -10,10 +10,12 @@
         flycheck
         yaml-mode
         markdown-mode
+        envrc
       ];
 
-      extraConfig = ''
+      extraConfig = lib.mkAfter ''
         (global-flycheck-mode)
+        (envrc-global-mode)
       '';
     };
   };
