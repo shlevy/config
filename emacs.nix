@@ -5,8 +5,6 @@
         enable = true;
 
         extraPackages = epkgs: with epkgs; [
-          solaire-mode
-          doom-themes
           vlf
           company
           agda-input
@@ -17,12 +15,6 @@
         package = pkgs.emacs29-pgtk;
 
         extraConfig = ''
-          (solaire-global-mode +1)
-
-          (load-theme 'doom-vibrant t)
-          (doom-themes-visual-bell-config)
-          (doom-themes-org-config)
-
           (require 'vlf-setup)
 
           (add-hook 'after-init-hook 'global-company-mode)
