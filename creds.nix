@@ -2,6 +2,7 @@
   home-manager.users.shlevy = { config, ... }: let
     creds = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/creds";
   in {
+    programs.emacs.extraPackages = epkgs: with epkgs; [ password-store ];
     programs.gpg = {
       enable = true;
 
