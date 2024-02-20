@@ -1,6 +1,6 @@
 { lib, pkgs, ... }: {
   home-manager.users.shlevy = {
-    home.packages = with pkgs; [ mosh gnome.gnome-remote-desktop oscclip ];
+    home.packages = with pkgs; [ mosh gnome.gnome-remote-desktop oscclip tmux ];
     programs.emacs = {
       extraPackages = epkgs: [ epkgs.clipetty ];
       extraConfig = ''
