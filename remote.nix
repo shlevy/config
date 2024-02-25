@@ -29,6 +29,6 @@
   };
   services.openssh.enable = true;
   users.users.shlevy.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEV4YLEr/vOvWzkp4wTZUvEiXKoxSIU1YGrSvOZYZyN6 shlevy@avp"
+    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCHdILXJXPGYkjB8QbX246cRT9jLNZq0P8a9+r14Xm6pjX9r0Uj0o+b0zysZR+GcupwDZ9/GkGiKm5LfB9xgP48= shlevy@avp.shealevy.com"
   ];
 }
