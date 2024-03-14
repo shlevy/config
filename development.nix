@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: {
   home-manager.users.shlevy = {
-    home.packages = with pkgs; [ yamllint ];
+    home.packages = with pkgs; [ yamllint gnumake ];
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
