@@ -1,11 +1,21 @@
 { lib, pkgs, ... }: {
   home-manager.users.shlevy = {
-    home.packages = with pkgs; [ mosh gnome.gnome-remote-desktop oscclip tmux ];
+    home.packages = with pkgs; [ mosh gnome.gnome-remote-desktop oscclip ];
     programs.emacs = {
       extraPackages = epkgs: [ epkgs.clipetty ];
       extraConfig = ''
         (global-clipetty-mode)
       '';
+    };
+
+    programs.tmux = {
+      enable = true;
+      extraConfig = ''
+        set-option -g allow-passthrough on
+        set-option -g set-clipboard on
+        set-option -g terminal-features ',vscode-direct:clipboard'
+      '';
+      terminal = "tmux-direct";
     };
   };
 
