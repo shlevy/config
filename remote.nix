@@ -20,6 +20,7 @@
   };
 
   nixpkgs.overlays = lib.singleton (self: super: {
+    mosh = self.callPackage ./remote/mosh.nix {};
   });
   services.openssh.enable = true;
   users.users.shlevy.openssh.authorizedKeys.keys = [
