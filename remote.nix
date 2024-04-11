@@ -20,16 +20,6 @@
   };
 
   nixpkgs.overlays = lib.singleton (self: super: {
-    gnome = super.gnome.overrideScope (self: super: {
-      gnome-remote-desktop = lib.overrideDerivation super.gnome-remote-desktop (drv: {
-        buildInputs = drv.buildInputs ++ [
-          pkgs.libvncserver.dev
-        ];
-        mesonFlags = drv.mesonFlags ++ [
-          "-Dvnc=true"
-        ];
-      });
-    });
   });
   services.openssh.enable = true;
   users.users.shlevy.openssh.authorizedKeys.keys = [
