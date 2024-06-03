@@ -63,7 +63,7 @@
     avahi = {
       enable = true;
       hostName = config.systemSpecific.machineName;
-      nssmdns = true;
+      nssmdns4 = true;
     };
     printing = {
       enable = true;
@@ -74,11 +74,11 @@
       enable = true;
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
-      libinput = {
-        enable = true;
-        mouse.naturalScrolling = true;
-        touchpad.naturalScrolling = true;
-      };
+    };
+    libinput = {
+      enable = true;
+      mouse.naturalScrolling = true;
+      touchpad.naturalScrolling = true;
     };
   };
   time.timeZone = "US/Eastern";
