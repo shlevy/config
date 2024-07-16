@@ -28,6 +28,11 @@
                  (file+head "source/''${title}.org" "#+title: ''${title}\n")
                  :immediate-finish t
                  :unnarrowed t)))
+
+        (org-link-set-parameters "maybe-elaborable-by" :follow #'org-roam-id-open)
+        (org-link-set-parameters "maybe-aspect-of" :follow #'org-roam-id-open)
+        (org-link-set-parameters "maybe-specified-by" :follow #'org-roam-id-open)
+        (org-link-set-parameters "accomplishment" :follow #'org-roam-id-open)
       '';
 
       extraCustomize = ''
