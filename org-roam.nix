@@ -8,6 +8,7 @@
         (define-key global-map (kbd "C-c n l") 'org-roam-buffer-toggle)
         (define-key global-map (kbd "C-c n b") 'org-roam-buffer-display-dedicated)
         (define-key global-map (kbd "C-c n f") 'org-roam-node-find)
+        (define-key global-map (kbd "C-c n t") 'org-roam-dailies-goto-today)
         (define-key global-map (kbd "C-c n i") #'org-roam-node-insert)
         (org-roam-db-autosync-mode)
         (setq org-roam-capture-templates
@@ -33,6 +34,12 @@
         (org-link-set-parameters "maybe-aspect-of" :follow #'org-roam-id-open)
         (org-link-set-parameters "maybe-specified-by" :follow #'org-roam-id-open)
         (org-link-set-parameters "accomplishment" :follow #'org-roam-id-open)
+        (org-link-set-parameters "in-domain" :follow #'org-roam-id-open)
+        (org-link-set-parameters "furthers" :follow #'org-roam-id-open)
+        (org-link-set-parameters "source" :follow #'org-roam-id-open)
+        (org-link-set-parameters "requirement-of" :follow #'org-roam-id-open)
+        (org-link-set-parameters "violates-norm" :follow #'org-roam-id-open)
+        (org-link-set-parameters "elaboration" :follow #'org-roam-id-open)
       '';
 
       extraCustomize = ''
