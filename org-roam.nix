@@ -29,17 +29,60 @@
                  (file+head "source/''${title}.org" "#+title: ''${title}\n")
                  :immediate-finish t
                  :unnarrowed t)))
+        (setq org-roam-dailies-capture-templates
+               '(("d" "default" entry "* %?" :target
+                 (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n| Start | End | What |\n|-------+-----+------|\n|       |     |      |"))))
 
-        (org-link-set-parameters "maybe-elaborable-by" :follow #'org-roam-id-open)
-        (org-link-set-parameters "maybe-aspect-of" :follow #'org-roam-id-open)
-        (org-link-set-parameters "maybe-specified-by" :follow #'org-roam-id-open)
-        (org-link-set-parameters "accomplishment" :follow #'org-roam-id-open)
-        (org-link-set-parameters "in-domain" :follow #'org-roam-id-open)
-        (org-link-set-parameters "furthers" :follow #'org-roam-id-open)
-        (org-link-set-parameters "source" :follow #'org-roam-id-open)
-        (org-link-set-parameters "requirement-of" :follow #'org-roam-id-open)
-        (org-link-set-parameters "violates-norm" :follow #'org-roam-id-open)
-        (org-link-set-parameters "elaboration" :follow #'org-roam-id-open)
+        (setq shlevy-link-types
+          ["maybe-elaborable-by"
+           "maybe-aspect-of"
+           "maybe-specified-by"
+           "accomplishment"
+           "in-domain"
+           "furthers"
+           "maybe-furthers"
+           "source"
+           "requirement-of"
+           "violates-norm"
+           "elaboration"
+           "instance-of"
+           "instance"
+           "maybe-solution"
+           "challenge-for"
+           "question-for"
+           "epistemic-norm-of"
+           "employer"
+           "former-employer"
+           "id"])
+        (seq-doseq (ty shlevy-link-types)
+          (org-link-set-parameters ty :follow #'org-roam-id-open))
+
+        (cl-defun org-roam-backlinks-get (node &key unique)
+          "Return the backlinks for NODE.
+
+         When UNIQUE is nil, show all positions where references are found.
+         When UNIQUE is t, limit to unique sources."
+          (let* ((sql (if unique
+                          [:select :distinct [source dest pos properties]
+                           :from links
+                           :where (= dest $s1)
+                           :and (in type $v2)
+                           :group :by source
+                           :having (funcall min pos)]
+                        [:select [source dest pos properties]
+                         :from links
+                         :where (= dest $s1)
+                         :and (in type $v2)]))
+                 (backlinks (org-roam-db-query sql (org-roam-node-id node) shlevy-link-types)))
+            (cl-loop for backlink in backlinks
+                     collect (pcase-let ((`(,source-id ,dest-id ,pos ,properties) backlink))
+                               (org-roam-populate
+                                (org-roam-backlink-create
+                                 :source-node (org-roam-node-create :id source-id)
+                                 :target-node (org-roam-node-create :id dest-id)
+                                 :point pos
+                                 :properties properties))))))
+
       '';
 
       extraCustomize = ''
