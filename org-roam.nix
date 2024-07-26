@@ -53,6 +53,7 @@
            "epistemic-norm-of"
            "employer"
            "former-employer"
+           "outcome"
            "id"])
         (seq-doseq (ty shlevy-link-types)
           (org-link-set-parameters ty :follow #'org-roam-id-open))
