@@ -1,40 +1,49 @@
-{ inputs, ... }: let inherit (inputs) self; in {
+{ config, pkgs, ... }: {
   imports = [
-    ./system-specific.nix
-
-    ./configuration.nix
-    ./docker.nix
+    ./audio.nix
+    ./boot.nix
+    ./hardware.nix
     ./home-manager.nix
-    ./btrbk.nix
-    ./firmware.nix
+    ./localization.nix
     ./remote.nix
+    ./X.nix
+    ./printing.nix
 
     ./bash.nix
     ./emacs.nix
     ./git.nix
     ./man.nix
-    ./mail.nix
+
     ./org-roam.nix
     ./org.nix
-    ./org-pomodoro.nix
     ./priodyn.nix
-    ./finances.nix
     ./citations.nix
 
     ./nix.nix
     ./haskell.nix
     ./rust.nix
     ./development.nix
-
-    ./creds.nix
-    ./misc.nix
-    ./no-nix-buffer.nix
   ];
 
   config = {
-    system.configurationRevision = self.rev or null;
-    system.extraSystemBuilderCmds = ''
-      ln -sv ${./.} $out/config${if self ? rev then "-${self.rev}" else ""}
-    '';
+    home-manager.users.${config.users.me} = {
+      home.packages = with pkgs; [
+        zoom-us
+        jq
+        firefox
+        slack
+        file
+        pdftk
+        unzip
+        magic-wormhole
+        biscuit-cli
+        libreoffice
+        ncdu
+      ];
+
+      programs.command-not-found.enable = true;
+    };
+
+    environment.variables.MOZ_ENABLE_WAYLAND = "1";
   };
 }

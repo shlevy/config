@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: let
+{ pkgs, lib, config, ... }: let
   inherit (pkgs) notmuch coreutils gnused gnugrep;
 
   move-mail = pkgs.writeShellScriptBin "move-mail" ''
@@ -28,7 +28,7 @@
     done
   '';
 in {
-  home-manager.users.shlevy = { config, ... }: let
+  home-manager.users.${config.users.me} = { config, ... }: let
     email = config.accounts.email;
   in {
     home.packages = [ move-mail ];

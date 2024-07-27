@@ -1,5 +1,5 @@
-{
-  home-manager.users.shlevy = { pkgs, ... }: {
+{ config, ... }: {
+  home-manager.users.${config.users.me} = { pkgs, ... }: {
     programs.emacs = {
       extraPackages = epkgs: [
         (epkgs.trivialBuild rec {

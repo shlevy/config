@@ -1,5 +1,5 @@
-{ pkgs, ...}: {
-  home-manager.users.shlevy = {
+{ pkgs, config, ...}: {
+  home-manager.users.${config.users.me} = {
     home.packages = with pkgs; [ cabal-install ];
 
     programs.emacs = {

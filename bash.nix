@@ -1,5 +1,5 @@
-{
-  home-manager.users.shlevy.programs.bash = {
+{ config, ... }: {
+  home-manager.users.${config.users.me}.programs.bash = {
     enable = true;
 
     enableVteIntegration = true;

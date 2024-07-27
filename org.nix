@@ -1,5 +1,5 @@
-{
-  home-manager.users.shlevy = { pkgs, ... }: {
+{ config, ... }:{
+  home-manager.users.${config.users.me} = { pkgs, ... }: {
     home.packages = [ pkgs.texlive.combined.scheme-full ];
     programs.emacs = {
       extraPackages = epkgs: [ epkgs.org-bullets ];

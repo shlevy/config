@@ -7,13 +7,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations.carbon = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit home-manager; };
       modules = [
         ./carbon.nix
         ./nixos-common.nix
+        {
+          system.configurationRevision = self.rev or null;
+          system.extraSystemBuilderCmds = ''
+            ln -sv ${self} $out/config${if self ? rev then "-${self.rev}" else ""}
+          '';
+        }
       ];
     };
   };

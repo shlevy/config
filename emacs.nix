@@ -1,5 +1,5 @@
-{
-  home-manager.users.shlevy = { pkgs, lib, config, ... }: {
+{ config, ... }: {
+  home-manager.users.${config.users.me} = { pkgs, lib, config, ... }: {
     config = {
       programs.emacs = {
         enable = true;

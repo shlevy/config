@@ -1,5 +1,5 @@
-{
-  home-manager.users.shlevy = {
+{ config, ... }: {
+  home-manager.users.${config.users.me} = {
     programs.emacs = {
       extraPackages = epkgs: [ epkgs.org-roam ];
 

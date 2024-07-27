@@ -1,5 +1,5 @@
-{ pkgs, lib, ... }: {
-  home-manager.users.shlevy = {
+{ pkgs, lib, config, ... }: {
+  home-manager.users.${config.users.me} = {
     home.packages = with pkgs; [ yamllint gnumake ];
     programs.direnv = {
       enable = true;

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
-  home-manager.users.shlevy = {
+  home-manager.users.${config.users.me} = {
     manual.html.enable = true;
 
     home.packages = [
