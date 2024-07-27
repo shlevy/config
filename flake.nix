@@ -8,6 +8,7 @@
     };
   };
   outputs = { self, nixpkgs, home-manager, ... }: {
+    nixosModules.default = [ ./nixos-common.nix ];
     nixosConfigurations.carbon = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit home-manager; };
