@@ -36,4 +36,9 @@
     whatsapp-for-linux
     wineWowPackages.waylandFull
   ];
+
+  hardware.ipu6 = {
+    enable = true;
+    platform = "ipu6ep";
+  };
 }
