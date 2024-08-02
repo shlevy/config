@@ -36,11 +36,13 @@
         (setq shlevy-link-types
           ["maybe-elaborable-by"
            "maybe-aspect-of"
+           "aspect-of"
            "maybe-specified-by"
            "accomplishment"
            "in-domain"
            "furthers"
            "maybe-furthers"
+           "impedes"
            "source"
            "requirement-of"
            "violates-norm"
