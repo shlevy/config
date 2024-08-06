@@ -9,6 +9,7 @@
         (define-key global-map (kbd "C-c n b") 'org-roam-buffer-display-dedicated)
         (define-key global-map (kbd "C-c n f") 'org-roam-node-find)
         (define-key global-map (kbd "C-c n t") 'org-roam-dailies-goto-today)
+        (define-key global-map (kbd "C-c n y") 'org-roam-dailies-goto-yesterday)
         (define-key global-map (kbd "C-c n i") #'org-roam-node-insert)
         (org-roam-db-autosync-mode)
         (setq org-roam-capture-templates
