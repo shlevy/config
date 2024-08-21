@@ -45,6 +45,7 @@
            "maybe-furthers"
            "impedes"
            "source"
+           "application-of"
            "requirement-of"
            "violates-norm"
            "elaboration"
@@ -54,9 +55,12 @@
            "challenge-for"
            "question-for"
            "epistemic-norm-of"
+           "evaluative-norm-of"
            "employer"
            "former-employer"
            "outcome"
+           "maybe-precept-of"
+           "fz"
            "id"])
         (seq-doseq (ty shlevy-link-types)
           (org-link-set-parameters ty :follow #'org-roam-id-open))
