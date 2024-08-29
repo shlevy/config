@@ -39,6 +39,7 @@
            "maybe-aspect-of"
            "aspect-of"
            "maybe-specified-by"
+           "specifies"
            "accomplishment"
            "in-domain"
            "furthers"
@@ -61,6 +62,7 @@
            "outcome"
            "maybe-precept-of"
            "fz"
+           "objectivizes"
            "id"])
         (seq-doseq (ty shlevy-link-types)
           (org-link-set-parameters ty :follow #'org-roam-id-open))
