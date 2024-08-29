@@ -41,4 +41,6 @@
     enable = true;
     platform = "ipu6ep";
   };
+
+  services.tailscale.enable = true;
 }
