@@ -38,7 +38,7 @@
   ];
 
   hardware.ipu6 = {
-    enable = true;
+    enable = false; # Not working yet...
     platform = "ipu6ep";
   };
 
