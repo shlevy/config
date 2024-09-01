@@ -48,6 +48,7 @@
            "source"
            "application-of"
            "requirement-of"
+           "requires"
            "violates-norm"
            "elaboration"
            "instance-of"
