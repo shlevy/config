@@ -19,6 +19,7 @@
     ./priodyn.nix
     ./citations.nix
 
+    ./agda.nix
     ./nix.nix
     ./haskell.nix
     ./rust.nix
