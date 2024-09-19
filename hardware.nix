@@ -4,5 +4,8 @@
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
   };
-  powerManagement.enable = true;
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "performance";
+  };
 }
